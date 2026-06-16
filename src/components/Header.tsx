@@ -62,8 +62,16 @@ export default function Header() {
     setMenuOpen(false);
     if (isHome) {
       e.preventDefault();
-      document.querySelector(targetId)?.scrollIntoView({ behavior: 'instant' });
-      window.history.pushState(null, '', targetId);
+      const scrollToTarget = () => {
+        const el = document.querySelector(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'instant' });
+          window.history.pushState(null, '', targetId);
+        } else {
+          requestAnimationFrame(scrollToTarget);
+        }
+      };
+      scrollToTarget();
     }
   };
 

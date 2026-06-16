@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import Hero from '../components/Hero';
 import { useSEO } from '../lib/useSEO';
 
@@ -10,6 +10,20 @@ const Contact     = lazy(() => import('../components/Contact'));
 const FloatingCTA = lazy(() => import('../components/FloatingCTA'));
 
 export default function Home() {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const scrollToHash = () => {
+      const el = document.querySelector(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: 'instant' });
+      } else {
+        requestAnimationFrame(scrollToHash);
+      }
+    };
+    scrollToHash();
+  }, []);
+
   useSEO(
     'Dillan Darcheville | Web Designer & Developer — New York',
     'New York-based web designer and developer specializing in creative direction, interface design, web development, and experience design for brands globally.',
