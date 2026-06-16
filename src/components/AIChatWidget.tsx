@@ -32,6 +32,18 @@ const SUGGESTIONS = [
 
 type Message = { role: 'user' | 'assistant'; text: string };
 
+function renderWithLinks(text: string) {
+  const parts = text.split(/(https?:\/\/[^\s]+)/g);
+  return parts.map((part, i) =>
+    /^https?:\/\//.test(part) ? (
+      <a key={i} href={part} target="_blank" rel="noopener noreferrer"
+        className="text-[#00F0FF] underline break-all">
+        {part}
+      </a>
+    ) : part
+  );
+}
+
 export default function AIChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -155,7 +167,7 @@ export default function AIChatWidget() {
                     ? 'bg-[#00F0FF] text-black rounded-br-sm'
                     : 'bg-white/5 border border-white/10 text-white/90 rounded-bl-sm'
                 }`}>
-                  {msg.text}
+                  {renderWithLinks(msg.text)}
                 </div>
               </div>
             ))}
