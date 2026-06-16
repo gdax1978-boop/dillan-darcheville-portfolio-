@@ -78,13 +78,6 @@ export default function Header() {
   const navLinkClass = 'text-sm font-medium text-muted hover:text-accent transition-colors';
 
   const navLink = (item: string) => {
-    if (item === 'Blog') {
-      return (
-        <Link key={item} to="/blog" onClick={() => setMenuOpen(false)} className={navLinkClass}>
-          {item}
-        </Link>
-      );
-    }
     const hash = `#${item.toLowerCase()}`;
     return isHome ? (
       <a key={item} href={hash} onClick={(e) => handleNavClick(e, hash)} className={navLinkClass}>
@@ -160,18 +153,6 @@ export default function Header() {
         >
           <nav aria-label="Mobile Navigation" className="flex flex-col gap-2">
             {NAV_ITEMS.map((item) => {
-              if (item === 'Blog') {
-                return (
-                  <Link
-                    key={item}
-                    to="/blog"
-                    onClick={() => setMenuOpen(false)}
-                    className="text-4xl font-display font-bold tracking-tighter uppercase py-3 border-b border-accent/10 hover:text-accent transition-colors"
-                  >
-                    {item}
-                  </Link>
-                );
-              }
               const hash = `#${item.toLowerCase()}`;
               return isHome ? (
                 <a
