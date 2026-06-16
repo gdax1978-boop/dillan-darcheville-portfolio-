@@ -1,0 +1,30 @@
+# Canvex Studio
+> A cinematic web design and development studio helping brands, entrepreneurs, and businesses create immersive digital experiences.
+
+## About
+Canvex Studio is a creative design and development studio founded by Dillan Darcheville, based in New York, NY. We specialize in high-end web design, interface design, creative direction, and experience design for clients globally. Our average project turnaround is 2 weeks.
+
+## Services
+- Creative Direction: Defining the visual soul of your brand through cinematic design and storytelling.
+- Interface Design: High-fidelity UI systems that bridge the gap between aesthetics and functionality.
+- Web Development: Architecting fast, responsive, and secure digital products with modern tech stacks (React, TypeScript, Tailwind CSS).
+- Experience Design: Mapping user journeys that are intuitive, delightful, and focused on conversion.
+
+## Projects
+- Lumina Real Estate: Premium luxury real estate platform — https://luxury-cobbler-beccc8.netlify.app/
+- Volt Fitness: Dynamic fitness application for modern athletes — https://resplendent-bonbon-288501.netlify.app/
+- Osteria Roasters: Artisanal coffee shop e-commerce experience — https://serene-bombolone-4f49d1.netlify.app/brew
+- Game Changers Gear: Custom sports uniform e-commerce store — https://www.gamechangersgear.com/
+
+## Contact
+Email: canvexstudio@gmail.com
+Book a free 30-minute discovery call: https://calendly.com/canvexstudio/30min
+Website: https://www.canvexstudio.com
+
+## Pages
+- Homepage: https://www.canvexstudio.com/
+- Blog: https://www.canvexstudio.com/blog
+- Case Study – Lumina Real Estate: https://www.canvexstudio.com/case-study/1
+- Case Study – Volt Fitness: https://www.canvexstudio.com/case-study/2
+- Case Study – Osteria Roasters: https://www.canvexstudio.com/case-study/3
+- Case Study – Game Changers Gear: https://www.canvexstudio.com/case-study/4

@@ -1,0 +1,19 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+.vercel
+.env*.local
+
+# Pre-push check artifacts
+.seo-report.json
+.content-report.json
+.lighthouse-results.json
+.auto-fix-suggestions.md
+.lighthouseci/
+eslint.security.config.mjs

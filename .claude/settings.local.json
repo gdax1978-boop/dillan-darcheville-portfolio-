@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(findstr :3000)",
+      "Bash(pnpm dev *)",
+      "Bash(ping -n 6 127.0.0.1)",
+      "Bash(npx vercel *)",
+      "Bash(pnpm approve-builds *)"
+    ]
+  }
+}
