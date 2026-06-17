@@ -42,7 +42,7 @@ function SkillBar({ name, level, index }: { name: string; level: number; index: 
 
 export default function About() {
   return (
-    <section id="about" className="py-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
+    <section id="about" aria-label="About" className="py-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -51,13 +51,19 @@ export default function About() {
           className="relative"
         >
           <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-[#0A0A0A] border border-white/5 relative z-10">
-            <img
-              src="/dillan-profile.jpg"
-              alt="Dillan Darcheville portrait"
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover"
-            />
+            <picture>
+              <source srcSet="/dillan-profile.avif" type="image/avif" />
+              <source srcSet="/dillan-profile.webp" type="image/webp" />
+              <img
+                src="/dillan-profile.jpg"
+                alt="Dillan Darcheville portrait"
+                loading="lazy"
+                decoding="async"
+                width={800}
+                height={1000}
+                className="w-full h-full object-cover"
+              />
+            </picture>
           </div>
           <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#00F0FF]/15 rounded-full blur-[100px] -z-10" />
         </motion.div>

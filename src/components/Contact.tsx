@@ -59,7 +59,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32 px-6 md:px-12 bg-[#030303] relative overflow-hidden">
+    <section id="contact" aria-label="Contact" className="py-32 px-6 md:px-12 bg-[#030303] relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#00F0FF]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">

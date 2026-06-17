@@ -27,7 +27,7 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-32 bg-[#050505] text-white overflow-hidden relative">
+    <section id="services" aria-label="Services" className="py-32 bg-[#050505] text-white overflow-hidden relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#00F0FF]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">

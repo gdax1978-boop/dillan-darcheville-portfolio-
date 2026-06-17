@@ -80,7 +80,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center px-6 overflow-hidden bg-[#030303]">
+    <section aria-label="Hero" className="relative min-h-screen flex flex-col items-center px-6 overflow-hidden bg-[#030303]">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="hero-orb-1 absolute top-1/4 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-[#00F0FF]/20 to-purple-900/10 rounded-full blur-[100px]" />
         <div className="hero-orb-2 absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-purple-900/20 to-[#00F0FF]/10 rounded-full blur-[100px]" />

@@ -9,7 +9,7 @@ const POSTS = [
     date: 'Apr 24, 2026',
     category: 'Design Trends',
     readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?fm=webp&auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const POSTS = [
     date: 'Apr 10, 2026',
     category: 'Development',
     readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?fm=webp&auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 3,
@@ -25,13 +25,13 @@ const POSTS = [
     date: 'Mar 28, 2026',
     category: 'Typography',
     readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?fm=webp&auto=format&fit=crop&q=80&w=800',
   }
 ];
 
 export default function BlogSection() {
   return (
-    <section id="blog" className="py-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
+    <section id="blog" aria-label="Blog" className="py-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
       <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
         <div className="max-w-xl">
           <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight mb-6 uppercase text-white">INSIGHTS</h2>

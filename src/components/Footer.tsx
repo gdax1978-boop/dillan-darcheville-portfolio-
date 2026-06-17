@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#030303] py-20 px-6 md:px-12 border-t border-white/5">
+    <footer role="contentinfo" aria-label="Site footer" className="bg-[#030303] py-20 px-6 md:px-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-end border-b border-white/10 pb-20 mb-12">
           <div>
@@ -25,7 +25,7 @@ export default function Footer() {
           </div>
 
           <div className="md:justify-self-end">
-            <div className="grid grid-cols-2 gap-12 text-sm">
+            <nav role="navigation" aria-label="Footer navigation" className="grid grid-cols-2 gap-12 text-sm">
               <div className="space-y-4">
                 <h3 className="font-bold uppercase tracking-widest text-[10px] text-white/50">Navigation</h3>
                 <div className="flex flex-col gap-2 text-white/80">
@@ -45,7 +45,7 @@ export default function Footer() {
                   <Link to="/case-study/4" className="hover:text-[#00F0FF] transition-colors">Game Changers Gear</Link>
                 </div>
               </div>
-            </div>
+            </nav>
           </div>
         </div>
         

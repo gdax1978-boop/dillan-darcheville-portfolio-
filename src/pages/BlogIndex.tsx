@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ const POSTS = [
     date: 'Apr 24, 2026',
     category: 'Design Trends',
     readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?fm=webp&auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const POSTS = [
     date: 'Apr 10, 2026',
     category: 'Development',
     readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?fm=webp&auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const POSTS = [
     date: 'Mar 28, 2026',
     category: 'Typography',
     readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?fm=webp&auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const POSTS = [
     date: 'Mar 15, 2026',
     category: 'Creative Coding',
     readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fm=webp&auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 5,
@@ -43,13 +43,13 @@ const POSTS = [
     date: 'Feb 20, 2026',
     category: 'Art Direction',
     readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?fm=webp&auto=format&fit=crop&q=80&w=800',
   }
 ];
 
 export default function BlogIndex() {
   useSEO(
-    'The Journal | Canvex Studio — Design & Development Insights',
+    'The Journal | Canvex Studio â€” Design & Development Insights',
     'Thoughts, technical deep dives, and reflections on design, engineering, and the digital landscape by Dillan Darcheville.',
     '/blog'
   );
@@ -130,3 +130,4 @@ export default function BlogIndex() {
     </main>
   );
 }
+

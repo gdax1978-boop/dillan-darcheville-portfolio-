@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import { motion } from 'motion/react';
 import { ExternalLink, Plus } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ const PROJECTS = [
     title: 'Lumina Real Estate',
     category: 'Real Estate / Luxury',
     description: 'A premium real estate platform showcasing high-end properties with immersive galleries.',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?fm=webp&auto=format&fit=crop&q=80&w=1200',
     link: 'https://luxury-cobbler-beccc8.netlify.app/',
     span: 'col-span-1 md:col-span-2 row-span-2'
   },
@@ -18,7 +18,7 @@ const PROJECTS = [
     title: 'Volt Fitness',
     category: 'Fitness / Lifestyle',
     description: 'A dynamic fitness application for modern athletes with personalized workout plans.',
-    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?fm=webp&auto=format&fit=crop&q=80&w=1200',
     link: 'https://resplendent-bonbon-288501.netlify.app/#home',
     span: 'col-span-1 row-span-1'
   },
@@ -27,7 +27,7 @@ const PROJECTS = [
     title: 'Osteria Roasters',
     category: 'E-Commerce / Coffee',
     description: 'An artisanal coffee shop digital experience with seamless online ordering.',
-    image: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?fm=webp&auto=format&fit=crop&q=80&w=1200',
     link: 'https://serene-bombolone-4f49d1.netlify.app/brew',
     span: 'col-span-1 row-span-1'
   },
@@ -36,7 +36,7 @@ const PROJECTS = [
     title: 'Game Changers Gear',
     category: 'E-Commerce / Sports',
     description: 'Custom, high-performance baseball and softball uniforms built for champions.',
-    image: 'https://images.unsplash.com/photo-1508344928928-7165b67de128?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1508344928928-7165b67de128?fm=webp&auto=format&fit=crop&q=80&w=1200',
     link: 'https://www.gamechangersgear.com/',
     span: 'col-span-1 md:col-span-2 row-span-1'
   },
@@ -151,3 +151,4 @@ export default function Projects() {
     </section>
   );
 }
+
