@@ -48,10 +48,20 @@ const POSTS = [
 ];
 
 export default function BlogIndex() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.canvexstudio.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Journal', item: 'https://www.canvexstudio.com/blog' },
+    ],
+  };
+
   useSEO(
-    'The Journal | Canvex Studio â€” Design & Development Insights',
+    'The Journal | Canvex Studio — Design & Development Insights',
     'Thoughts, technical deep dives, and reflections on design, engineering, and the digital landscape by Dillan Darcheville.',
-    '/blog'
+    '/blog',
+    breadcrumbSchema
   );
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -68,6 +78,12 @@ export default function BlogIndex() {
     <main className="min-h-screen pt-32 pb-20 bg-[#030303] text-white relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#00F0FF]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
+
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-white/40 mb-8 font-medium uppercase tracking-widest">
+          <Link to="/" className="hover:text-[#00F0FF] transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-white/60">Journal</span>
+        </nav>
 
         <div className="max-w-3xl mb-20">
           <motion.h1

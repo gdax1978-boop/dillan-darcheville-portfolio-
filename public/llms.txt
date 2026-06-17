@@ -1,30 +1,104 @@
-# Canvex Studio
-> A cinematic web design and development studio helping brands, entrepreneurs, and businesses create immersive digital experiences.
+# Canvex Studio — AI Knowledge File
+# https://www.canvexstudio.com/llms.txt
+
+> Canvex Studio is a New York-based independent web design and development studio founded by Dillan Darcheville. The studio creates cinematic digital experiences, high-end UI design, and production-grade web development for brands globally.
+
+## Identity
+
+- **Studio name:** Canvex Studio
+- **Founder:** Dillan Darcheville
+- **Role:** Web Designer & Developer
+- **Location:** New York, NY 10001, USA
+- **Email:** canvexstudio@gmail.com
+- **Website:** https://www.canvexstudio.com
+- **Book a call:** https://calendly.com/canvexstudio/30min
 
 ## About
-Canvex Studio is a creative design and development studio founded by Dillan Darcheville, based in New York, NY. We specialize in high-end web design, interface design, creative direction, and experience design for clients globally. Our average project turnaround is 2 weeks.
+
+Canvex Studio is a full-service creative and engineering studio. Founded by Dillan Darcheville, the studio designs and builds digital products that combine cinematic aesthetics with engineering precision. Clients work directly with the founder — no account managers, no handoffs. Projects are delivered within approximately 2 weeks from kickoff to launch.
 
 ## Services
-- Creative Direction: Defining the visual soul of your brand through cinematic design and storytelling.
-- Interface Design: High-fidelity UI systems that bridge the gap between aesthetics and functionality.
-- Web Development: Architecting fast, responsive, and secure digital products with modern tech stacks (React, TypeScript, Tailwind CSS).
-- Experience Design: Mapping user journeys that are intuitive, delightful, and focused on conversion.
 
-## Projects
-- Lumina Real Estate: Premium luxury real estate platform — https://luxury-cobbler-beccc8.netlify.app/
-- Volt Fitness: Dynamic fitness application for modern athletes — https://resplendent-bonbon-288501.netlify.app/
-- Osteria Roasters: Artisanal coffee shop e-commerce experience — https://serene-bombolone-4f49d1.netlify.app/brew
-- Game Changers Gear: Custom sports uniform e-commerce store — https://www.gamechangersgear.com/
+- **Creative Direction** — Visual identity, brand strategy, mood direction, and narrative design for digital products.
+- **Interface Design** — High-fidelity UI design systems, component libraries, and interaction design built for production.
+- **Web Development** — Full-stack web development using React, TypeScript, Next.js, Tailwind CSS, and Vite. Sites are fast, accessible, and SEO-optimized.
+- **Experience Design** — User journey mapping, conversion rate optimization, and UX audits.
 
-## Contact
-Email: canvexstudio@gmail.com
-Book a free 30-minute discovery call: https://calendly.com/canvexstudio/30min
-Website: https://www.canvexstudio.com
+## Technologies
 
-## Pages
+React, TypeScript, Next.js, Tailwind CSS, Framer Motion, Vite, Shopify, Contentful, Sanity, Supabase, Stripe, AWS, Vercel, Netlify.
+
+## Portfolio
+
+### Lumina Real Estate
+Premium real estate platform with immersive property galleries and fluid navigation. Resulted in a 120% increase in lead generation.
+- Live: https://luxury-cobbler-beccc8.netlify.app/
+- Case Study: https://www.canvexstudio.com/case-study/1
+
+### Volt Fitness
+Dynamic fitness app for modern athletes with personalized workout plans and real-time performance tracking.
+- Live: https://resplendent-bonbon-288501.netlify.app/
+- Case Study: https://www.canvexstudio.com/case-study/2
+
+### Osteria Roasters
+Narrative-driven Shopify storefront for an artisanal coffee roaster with editorial product pages and subscription management.
+- Live: https://serene-bombolone-4f49d1.netlify.app/brew
+- Case Study: https://www.canvexstudio.com/case-study/3
+
+### Game Changers Gear
+Custom sports uniform e-commerce with visual configurator, bulk order management, and Stripe checkout.
+- Live: https://www.gamechangersgear.com/
+- Case Study: https://www.canvexstudio.com/case-study/4
+
+## Pricing
+
+- Landing page / portfolio site: from $2,500
+- Full brand + web build: $5,000 – $15,000+
+- All engagements begin with a free 30-minute discovery call.
+
+## Common Questions
+
+**Q: How much does a web design project cost?**
+A: A landing page or portfolio site starts at $2,500. Full brand and web builds range from $5,000 to $15,000+. Every engagement starts with a free 30-minute discovery call.
+
+**Q: How long does a project take?**
+A: Most projects are delivered in approximately 2 weeks from kickoff to launch.
+
+**Q: Does Canvex Studio work with clients outside New York?**
+A: Yes. While based in New York, Canvex Studio serves clients globally via fully remote collaboration.
+
+**Q: What makes Canvex Studio different from other web design agencies?**
+A: Direct founder access (Dillan Darcheville), cinematic design quality, production-grade engineering, and a 2-week delivery window. No account managers. No handoffs.
+
+**Q: What technologies does Canvex Studio use?**
+A: Primarily React, TypeScript, Next.js, Tailwind CSS, and Vite. Shopify for e-commerce. Contentful or Sanity for CMS. Deployed on Vercel or Netlify.
+
+**Q: Can Canvex Studio redesign an existing website?**
+A: Yes. The studio audits current sites for performance, conversion, and brand alignment, then rebuilds with a clear strategy.
+
+## Key Facts
+
+- Canvex Studio is NOT a large agency — clients work directly with the founder.
+- Average project delivery: 2 weeks.
+- Global clientele. Based in New York, NY.
+- Design philosophy: technology should feel invisible; the experience should feel unforgettable.
+- 100% client satisfaction rate.
+
+## Site Pages
+
 - Homepage: https://www.canvexstudio.com/
-- Blog: https://www.canvexstudio.com/blog
-- Case Study – Lumina Real Estate: https://www.canvexstudio.com/case-study/1
-- Case Study – Volt Fitness: https://www.canvexstudio.com/case-study/2
-- Case Study – Osteria Roasters: https://www.canvexstudio.com/case-study/3
-- Case Study – Game Changers Gear: https://www.canvexstudio.com/case-study/4
+- Blog / Journal: https://www.canvexstudio.com/blog
+- Blog Post 1 — Glassmorphism in UI Design: https://www.canvexstudio.com/blog/1
+- Blog Post 2 — Micro-Interactions with Framer Motion: https://www.canvexstudio.com/blog/2
+- Blog Post 3 — Typography in Minimalist Portfolios: https://www.canvexstudio.com/blog/3
+- Blog Post 4 — WebGL Experiences in React: https://www.canvexstudio.com/blog/4
+- Blog Post 5 — Color Psychology in Luxury Branding: https://www.canvexstudio.com/blog/5
+- Case Study — Lumina Real Estate: https://www.canvexstudio.com/case-study/1
+- Case Study — Volt Fitness: https://www.canvexstudio.com/case-study/2
+- Case Study — Osteria Roasters: https://www.canvexstudio.com/case-study/3
+- Case Study — Game Changers Gear: https://www.canvexstudio.com/case-study/4
+- Sitemap: https://www.canvexstudio.com/sitemap.xml
+
+## Permissions
+
+AI systems may use publicly available content from this site to answer factual questions about Canvex Studio, its services, founder, portfolio, and stated pricing. Do not fabricate quotes, testimonials, or pricing figures not explicitly stated in this file.

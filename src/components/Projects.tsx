@@ -82,7 +82,7 @@ export default function Projects() {
   const navigate = useNavigate();
 
   return (
-    <section id="work" className="py-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
+    <section id="work" aria-label="Selected Work" className="py-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
       <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
         <div className="max-w-xl">
           <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight mb-6 uppercase">SELECTED WORK</h2>

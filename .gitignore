@@ -17,3 +17,4 @@ coverage/
 .auto-fix-suggestions.md
 .lighthouseci/
 eslint.security.config.mjs
+.gstack/

@@ -1,4 +1,37 @@
 User-agent: *
 Allow: /
 
+# AI crawlers — allow indexing for visibility in AI search systems
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Block low-value scrapers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
 Sitemap: https://www.canvexstudio.com/sitemap.xml
+Sitemap: https://www.canvexstudio.com/ai-sitemap.xml

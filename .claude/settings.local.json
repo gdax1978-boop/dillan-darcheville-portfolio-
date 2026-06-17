@@ -5,7 +5,10 @@
       "Bash(pnpm dev *)",
       "Bash(ping -n 6 127.0.0.1)",
       "Bash(npx vercel *)",
-      "Bash(pnpm approve-builds *)"
+      "Bash(pnpm approve-builds *)",
+      "Skill(browse)",
+      "Skill(browse:*)",
+      "Bash(ls \"/mnt/c/Users/dilla/Downloads/alex-smith-_-portfolio/public/\" 2>/dev/null || echo \"no wsl\")"
     ]
   }
 }
