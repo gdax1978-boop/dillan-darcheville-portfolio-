@@ -2,6 +2,7 @@
 import { motion } from 'motion/react';
 import { ExternalLink, Plus } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { GlowingStarsBackgroundCard } from '@/src/components/ui/glowing-stars';
 
 const PROJECTS = [
   {
@@ -147,6 +148,16 @@ export default function Projects() {
             </TiltCard>
           </motion.div>
         ))}
+      </div>
+
+      {/* Glowing stars CTA */}
+      <div className="mt-12 flex justify-center">
+        <a href="#contact" className="block group">
+          <GlowingStarsBackgroundCard className="max-w-sm w-full cursor-pointer hover:scale-[1.02] transition-transform duration-300">
+            <p className="font-bold text-white text-lg">Start a Project</p>
+            <p className="text-white/50 text-sm mt-1">Let's build something unforgettable together →</p>
+          </GlowingStarsBackgroundCard>
+        </a>
       </div>
     </section>
   );

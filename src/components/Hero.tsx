@@ -1,5 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ArrowUpRight, CalendarDays } from 'lucide-react';
+import Hls from 'hls.js';
+import gsap from 'gsap';
+import { Spotlight } from '@/src/components/ui/spotlight';
+import { ShimmerButton } from '@/src/components/ui/shimmer-button';
+import ThreeBackground from './ThreeBackground';
+
+const HLS_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
 
 const STATS = [
   { value: '2 Wks', label: 'Avg. Turnaround' },
@@ -73,15 +80,66 @@ function MagneticButton({ href, children, primary }: {
 
 export default function Hero() {
   const [greeting, setGreeting] = useState(getTimeGreeting());
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => setGreeting(getTimeGreeting()), 60_000);
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      tl.from('.hero-badge', { y: -20, opacity: 0, duration: 0.8 })
+        .from('.hero-title', { y: 60, opacity: 0, duration: 1, skewY: 3 }, '-=0.4')
+        .from('.hero-sub', { y: 30, opacity: 0, duration: 0.8 }, '-=0.5')
+        .from('.hero-cta', { y: 20, opacity: 0, duration: 0.7 }, '-=0.4')
+        .from('.hero-stats > *', { y: 20, opacity: 0, duration: 0.6, stagger: 0.1 }, '-=0.3');
+    }, heroRef);
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari — native HLS support
+      video.src = HLS_URL;
+    } else if (Hls.isSupported()) {
+      const hls = new Hls({ startLevel: -1, autoStartLoad: true });
+      hls.loadSource(HLS_URL);
+      hls.attachMedia(video);
+      return () => hls.destroy();
+    }
+  }, []);
+
   return (
-    <section aria-label="Hero" className="relative min-h-screen flex flex-col items-center px-6 overflow-hidden bg-[#030303]">
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <section ref={heroRef} aria-label="Hero" className="relative min-h-screen flex flex-col items-center px-6 overflow-hidden bg-[#030303]">
+      {/* Three.js 3D landscape */}
+      <ThreeBackground />
+
+      {/* Video background */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover z-[2]"
+        style={{ opacity: 0.55 }}
+      />
+
+      {/* Dark gradient overlay to keep text readable */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#030303]/40 via-transparent to-[#030303]/60 pointer-events-none" />
+
+      {/* Aceternity spotlight */}
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#00F0FF" />
+
+      {/* Accent orbs on top of video */}
+      <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
         <div className="hero-orb-1 absolute top-1/4 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-[#00F0FF]/20 to-purple-900/10 rounded-full blur-[100px]" />
         <div className="hero-orb-2 absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-purple-900/20 to-[#00F0FF]/10 rounded-full blur-[100px]" />
       </div>
@@ -106,10 +164,17 @@ export default function Hero() {
         </p>
 
         <div className="hero-cta flex flex-col md:flex-row items-center justify-center gap-4 mb-20">
-          <MagneticButton href="#contact" primary>
-            <CalendarDays className="w-4 h-4" />
-            Book a Free Call
-          </MagneticButton>
+          <a href="#contact">
+            <ShimmerButton
+              shimmerColor="#00F0FF"
+              background="rgba(0,240,255,0.08)"
+              borderRadius="100px"
+              className="px-8 py-4 font-medium text-white border-[#00F0FF]/30 hover:shadow-[0_0_40px_rgba(0,240,255,0.4)] transition-shadow"
+            >
+              <CalendarDays className="w-4 h-4 mr-2 inline" />
+              Book a Free Call
+            </ShimmerButton>
+          </a>
           <MagneticButton href="#work">
             Explore Projects
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-accent" />

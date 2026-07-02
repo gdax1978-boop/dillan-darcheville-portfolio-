@@ -8,7 +8,10 @@
       "Bash(pnpm approve-builds *)",
       "Skill(browse)",
       "Skill(browse:*)",
-      "Bash(ls \"/mnt/c/Users/dilla/Downloads/alex-smith-_-portfolio/public/\" 2>/dev/null || echo \"no wsl\")"
+      "Bash(ls \"/mnt/c/Users/dilla/Downloads/alex-smith-_-portfolio/public/\" 2>/dev/null || echo \"no wsl\")",
+      "Skill(run)",
+      "Skill(run:*)",
+      "PowerShell(netstat -ano)"
     ]
   }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Globe, Figma, Zap, Layers, ChevronDown } from 'lucide-react';
+import { SpotlightCard } from '@/src/components/ui/spotlight';
 
 const SERVICES = [
   {
@@ -119,13 +120,14 @@ export default function Services() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="group relative"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[#00F0FF]/10 group-hover:border-[#00F0FF]/30 group-hover:shadow-[0_0_20px_rgba(0,240,255,0.2)] group-hover:-translate-y-2 transition-all duration-500">
-                    <service.icon className="w-6 h-6 text-white group-hover:text-[#00F0FF] transition-colors" />
-                  </div>
-                  <h3 className="text-2xl font-display font-bold mb-4 uppercase tracking-wide">{service.title}</h3>
-                  <p className="text-white/50 font-light leading-relaxed">{service.description}</p>
+                  <SpotlightCard className="group relative p-6 h-full">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[#00F0FF]/10 group-hover:border-[#00F0FF]/30 group-hover:shadow-[0_0_20px_rgba(0,240,255,0.2)] group-hover:-translate-y-2 transition-all duration-500">
+                      <service.icon className="w-6 h-6 text-white group-hover:text-[#00F0FF] transition-colors" />
+                    </div>
+                    <h3 className="text-2xl font-display font-bold mb-4 uppercase tracking-wide">{service.title}</h3>
+                    <p className="text-white/50 font-light leading-relaxed">{service.description}</p>
+                  </SpotlightCard>
                 </motion.div>
               ))}
             </div>

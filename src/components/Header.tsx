@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { lenis } from '../lib/lenisInstance';
 
 const NAV_ITEMS = ['Work', 'Services', 'About', 'Blog', 'Contact'];
 
@@ -65,7 +66,7 @@ export default function Header() {
       const scrollToTarget = () => {
         const el = document.querySelector(targetId);
         if (el) {
-          el.scrollIntoView({ behavior: 'instant' });
+          lenis.scrollTo(el as HTMLElement, { immediate: true, offset: 0 });
           window.history.pushState(null, '', targetId);
         } else {
           requestAnimationFrame(scrollToTarget);
