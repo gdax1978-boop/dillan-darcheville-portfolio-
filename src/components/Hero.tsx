@@ -4,7 +4,6 @@ import Hls from 'hls.js';
 import gsap from 'gsap';
 import { Spotlight } from '@/src/components/ui/spotlight';
 import { ShimmerButton } from '@/src/components/ui/shimmer-button';
-import ThreeBackground from './ThreeBackground';
 
 const HLS_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
 
@@ -117,9 +116,6 @@ export default function Hero() {
 
   return (
     <section ref={heroRef} aria-label="Hero" className="relative min-h-screen flex flex-col items-center px-6 overflow-hidden bg-[#030303]">
-      {/* Three.js 3D landscape */}
-      <ThreeBackground />
-
       {/* Video background */}
       <video
         ref={videoRef}
@@ -128,8 +124,8 @@ export default function Hero() {
         loop
         playsInline
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover z-[2]"
-        style={{ opacity: 0.55 }}
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ opacity: 0.75 }}
       />
 
       {/* Dark gradient overlay to keep text readable */}
