@@ -150,15 +150,6 @@ export default function Projects() {
         ))}
       </div>
 
-      {/* Glowing stars CTA */}
-      <div className="mt-12 flex justify-center">
-        <a href="#contact" className="block group">
-          <GlowingStarsBackgroundCard className="max-w-sm w-full cursor-pointer hover:scale-[1.02] transition-transform duration-300">
-            <p className="font-bold text-white text-lg">Start a Project</p>
-            <p className="text-white/50 text-sm mt-1">Let's build something unforgettable together →</p>
-          </GlowingStarsBackgroundCard>
-        </a>
-      </div>
     </section>
   );
 }
