@@ -131,16 +131,21 @@ export default function CaseStudy() {
 
   const caseStudySchema = {
     '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
-    name: caseStudy.title,
+    '@type': 'WebPage',
+    name: `${caseStudy.title} Case Study — Canvex Studio`,
     description: caseStudy.metaDescription,
-    creator: {
-      '@type': 'Organization',
-      name: 'Canvex Studio',
-      url: 'https://www.canvexstudio.com',
-    },
     url: `https://www.canvexstudio.com/case-study/${caseStudyId}`,
-    image: caseStudy.image,
+    image: { '@type': 'ImageObject', url: caseStudy.image },
+    author: { '@type': 'Organization', name: 'Canvex Studio', url: 'https://www.canvexstudio.com' },
+    about: {
+      '@type': 'CreativeWork',
+      name: caseStudy.title,
+      description: caseStudy.overview,
+      creator: { '@type': 'Organization', name: 'Canvex Studio', url: 'https://www.canvexstudio.com' },
+      contributor: { '@type': 'Person', name: 'Dillan Darcheville', jobTitle: caseStudy.role },
+      keywords: caseStudy.techStack.join(', '),
+    },
+    provider: { '@type': 'Organization', name: 'Canvex Studio', url: 'https://www.canvexstudio.com' },
   };
 
   useSEO(
@@ -176,19 +181,19 @@ export default function CaseStudy() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 pt-8 border-t border-white/10">
             <div>
-              <h2 className="font-bold uppercase tracking-widest text-[10px] text-white/50 mb-2">Client</h2>
+              <p className="font-bold uppercase tracking-widest text-[10px] text-white/50 mb-2">Client</p>
               <p className="font-medium text-sm text-white/80">{caseStudy.client}</p>
             </div>
             <div>
-              <h2 className="font-bold uppercase tracking-widest text-[10px] text-white/50 mb-2">Role</h2>
+              <p className="font-bold uppercase tracking-widest text-[10px] text-white/50 mb-2">Role</p>
               <p className="font-medium text-sm text-white/80">{caseStudy.role}</p>
             </div>
             <div>
-              <h2 className="font-bold uppercase tracking-widest text-[10px] text-white/50 mb-2">Duration</h2>
+              <p className="font-bold uppercase tracking-widest text-[10px] text-white/50 mb-2">Duration</p>
               <p className="font-medium text-sm text-white/80">{caseStudy.duration}</p>
             </div>
             <div>
-              <h2 className="font-bold uppercase tracking-widest text-[10px] text-white/50 mb-2">Live Link</h2>
+              <p className="font-bold uppercase tracking-widest text-[10px] text-white/50 mb-2">Live Link</p>
               <a href={caseStudy.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-medium text-sm text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] transition-all">
                 View Site <ExternalLink className="w-3 h-3" />
               </a>

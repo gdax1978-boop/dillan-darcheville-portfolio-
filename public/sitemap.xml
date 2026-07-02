@@ -5,17 +5,18 @@
 >
   <url>
     <loc>https://www.canvexstudio.com/</loc>
-    <lastmod>2026-06-17</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://www.canvexstudio.com/dillan-profile.webp</image:loc>
-      <image:title>Dillan Darcheville — Web Designer &amp; Developer, New York</image:title>
+      <image:title>Dillan Darcheville — Web Designer &amp; Developer, Canvex Studio, New York</image:title>
+      <image:caption>Founder of Canvex Studio — New York web design and development studio</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://www.canvexstudio.com/blog</loc>
-    <lastmod>2026-06-17</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -26,7 +27,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?fm=webp&amp;auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>The Future of Glassmorphism in UI Design</image:title>
+      <image:title>The Future of Glassmorphism in UI Design — Canvex Studio</image:title>
     </image:image>
   </url>
   <url>
@@ -36,7 +37,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1555066931-4365d14bab8c?fm=webp&amp;auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
-      <image:title>Engineering Micro-Interactions with Framer Motion</image:title>
+      <image:title>Engineering Micro-Interactions with Framer Motion — Canvex Studio</image:title>
     </image:image>
   </url>
   <url>
@@ -44,57 +45,69 @@
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1561070791-2526d30994b5?fm=webp&amp;auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
+      <image:title>Why Typography is the Backbone of Minimalist Portfolios — Canvex Studio</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.canvexstudio.com/blog/4</loc>
     <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fm=webp&amp;auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
+      <image:title>Building Performant WebGL Experiences in React — Canvex Studio</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.canvexstudio.com/blog/5</loc>
     <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1541701494587-cb58502866ab?fm=webp&amp;auto=format&amp;fit=crop&amp;q=80&amp;w=800</image:loc>
+      <image:title>The Psychology of Color in Luxury Branding — Canvex Studio</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.canvexstudio.com/case-study/1</loc>
-    <lastmod>2026-06-17</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?fm=webp&amp;auto=format&amp;fit=crop&amp;q=80&amp;w=1200</image:loc>
-      <image:title>Lumina Real Estate — Canvex Studio Case Study</image:title>
+      <image:title>Lumina Real Estate — Web Design Case Study by Canvex Studio</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://www.canvexstudio.com/case-study/2</loc>
-    <lastmod>2026-06-17</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1534438327276-14e5300c3a48?fm=webp&amp;auto=format&amp;fit=crop&amp;q=80&amp;w=1200</image:loc>
-      <image:title>Volt Fitness — Canvex Studio Case Study</image:title>
+      <image:title>Volt Fitness — App UI Design Case Study by Canvex Studio</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://www.canvexstudio.com/case-study/3</loc>
-    <lastmod>2026-06-17</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1497935586351-b67a49e012bf?fm=webp&amp;auto=format&amp;fit=crop&amp;q=80&amp;w=1200</image:loc>
-      <image:title>Osteria Roasters — Canvex Studio Case Study</image:title>
+      <image:title>Osteria Roasters — Shopify E-commerce Case Study by Canvex Studio</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://www.canvexstudio.com/case-study/4</loc>
-    <lastmod>2026-06-17</lastmod>
+    <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1508344928928-7165b67de128?fm=webp&amp;auto=format&amp;fit=crop&amp;q=80&amp;w=1200</image:loc>
-      <image:title>Game Changers Gear — Canvex Studio Case Study</image:title>
+      <image:title>Game Changers Gear — E-commerce Development Case Study by Canvex Studio</image:title>
     </image:image>
   </url>
 </urlset>

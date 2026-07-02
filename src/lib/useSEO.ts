@@ -5,7 +5,8 @@ export function useSEO(
   description: string,
   canonicalPath?: string,
   jsonLd?: object | object[],
-  ogImage?: string
+  ogImage?: string,
+  ogType: string = 'website'
 ) {
   useEffect(() => {
     document.title = title;
@@ -23,12 +24,16 @@ export function useSEO(
     setMeta('meta[property="og:title"]', title);
     setMeta('meta[property="og:description"]', description);
     setMeta('meta[property="og:url"]', canonicalUrl);
+    setMeta('meta[property="og:type"]', ogType);
     setMeta('meta[name="twitter:title"]', title);
     setMeta('meta[name="twitter:description"]', description);
 
     if (ogImage) {
       setMeta('meta[property="og:image"]', ogImage);
+      setMeta('meta[property="og:image:alt"]', title);
       setMeta('meta[name="twitter:image"]', ogImage);
+      setMeta('meta[name="twitter:image:alt"]', title);
+      setMeta('meta[name="twitter:card"]', 'summary_large_image');
     }
 
     let canonical = document.querySelector('link[rel="canonical"]');
@@ -57,5 +62,5 @@ export function useSEO(
       const el = document.getElementById(SCHEMA_ID);
       if (el) el.remove();
     };
-  }, [title, description, canonicalPath, JSON.stringify(jsonLd ?? null), ogImage]);
+  }, [title, description, canonicalPath, JSON.stringify(jsonLd ?? null), ogImage, ogType]);
 }

@@ -49,8 +49,14 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-white/50 font-medium uppercase tracking-widest">
-          <div>© {new Date().getFullYear()} DILLAN DARCHEVILLE. ALL RIGHTS RESERVED.</div>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-xs text-white/50 font-medium uppercase tracking-widest">
+          <div className="flex flex-col gap-1">
+            <div>© {new Date().getFullYear()} DILLAN DARCHEVILLE. ALL RIGHTS RESERVED.</div>
+            <address className="not-italic text-white/30 normal-case tracking-normal" itemScope itemType="https://schema.org/LocalBusiness">
+              <meta itemProp="name" content="Canvex Studio" />
+              <span itemProp="addressLocality">New York</span>, <span itemProp="addressRegion">NY</span> · <a href="mailto:canvexstudio@gmail.com" itemProp="email" className="hover:text-[#00F0FF] transition-colors">canvexstudio@gmail.com</a>
+            </address>
+          </div>
           <div className="flex gap-8 italic">
             <span>Built with Intention</span>
             <span>2026 GOLD STANDARD</span>

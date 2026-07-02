@@ -48,20 +48,52 @@ const POSTS = [
 ];
 
 export default function BlogIndex() {
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.canvexstudio.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Journal', item: 'https://www.canvexstudio.com/blog' },
-    ],
-  };
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.canvexstudio.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Journal', item: 'https://www.canvexstudio.com/blog' },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      '@id': 'https://www.canvexstudio.com/blog',
+      name: 'The Journal — Canvex Studio',
+      description: 'Design and development insights by Dillan Darcheville. Topics include UI design, web engineering, typography, motion design, and creative direction.',
+      url: 'https://www.canvexstudio.com/blog',
+      publisher: {
+        '@type': 'Organization',
+        name: 'Canvex Studio',
+        url: 'https://www.canvexstudio.com',
+        logo: { '@type': 'ImageObject', url: 'https://www.canvexstudio.com/dillan-profile.webp' },
+      },
+      author: {
+        '@type': 'Person',
+        name: 'Dillan Darcheville',
+        url: 'https://www.canvexstudio.com/',
+        jobTitle: 'Web Designer & Developer',
+        address: { '@type': 'PostalAddress', addressLocality: 'New York', addressRegion: 'NY', addressCountry: 'US' },
+      },
+      blogPost: POSTS.map(p => ({
+        '@type': 'BlogPosting',
+        headline: p.title,
+        url: `https://www.canvexstudio.com/blog/${p.id}`,
+        image: p.image,
+        articleSection: p.category,
+        timeRequired: p.readTime,
+        author: { '@type': 'Person', name: 'Dillan Darcheville' },
+      })),
+    },
+  ];
 
   useSEO(
     'The Journal | Canvex Studio — Design & Development Insights',
-    'Thoughts, technical deep dives, and reflections on design, engineering, and the digital landscape by Dillan Darcheville.',
+    'Web design and development insights by Dillan Darcheville of Canvex Studio, New York. Deep dives on UI design, React engineering, typography, and creative direction.',
     '/blog',
-    breadcrumbSchema
+    schemas
   );
   useEffect(() => {
     window.scrollTo(0, 0);

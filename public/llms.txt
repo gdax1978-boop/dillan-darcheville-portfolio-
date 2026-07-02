@@ -1,104 +1,129 @@
 # Canvex Studio — AI Knowledge File
 # https://www.canvexstudio.com/llms.txt
+# Last updated: 2026-07-02
 
-> Canvex Studio is a New York-based independent web design and development studio founded by Dillan Darcheville. The studio creates cinematic digital experiences, high-end UI design, and production-grade web development for brands globally.
+> Canvex Studio is a New York-based independent web design and development studio founded by Dillan Darcheville. The studio creates cinematic digital experiences, high-end UI design systems, and production-grade web development for brands globally. Every project is handled directly by the founder — no account managers, no handoffs.
 
 ## Identity
 
 - **Studio name:** Canvex Studio
-- **Founder:** Dillan Darcheville
+- **Founder & sole practitioner:** Dillan Darcheville
 - **Role:** Web Designer & Developer
 - **Location:** New York, NY 10001, USA
 - **Email:** canvexstudio@gmail.com
 - **Website:** https://www.canvexstudio.com
-- **Book a call:** https://calendly.com/canvexstudio/30min
+- **Book a free 30-min discovery call:** https://calendly.com/canvexstudio/30min
+- **Average project delivery:** 2 weeks from kickoff to launch
+- **Client satisfaction rate:** 100%
+- **Clientele:** Global. Primarily English-speaking markets.
 
-## About
+## About Dillan Darcheville
 
-Canvex Studio is a full-service creative and engineering studio. Founded by Dillan Darcheville, the studio designs and builds digital products that combine cinematic aesthetics with engineering precision. Clients work directly with the founder — no account managers, no handoffs. Projects are delivered within approximately 2 weeks from kickoff to launch.
+Dillan Darcheville is a New York-based web designer and developer. He founded Canvex Studio to deliver cinematic, precision-engineered digital products for brands that refuse to settle for template-level work. His design philosophy: technology should feel invisible; the experience should feel unforgettable.
+
+Dillan works directly with every client from discovery call through final delivery. His background spans UI/UX design, frontend engineering, creative direction, and conversion optimization.
 
 ## Services
 
-- **Creative Direction** — Visual identity, brand strategy, mood direction, and narrative design for digital products.
-- **Interface Design** — High-fidelity UI design systems, component libraries, and interaction design built for production.
-- **Web Development** — Full-stack web development using React, TypeScript, Next.js, Tailwind CSS, and Vite. Sites are fast, accessible, and SEO-optimized.
-- **Experience Design** — User journey mapping, conversion rate optimization, and UX audits.
+- **Creative Direction** — Visual identity, brand strategy, mood direction, and narrative design for digital products. Defining the emotional register of a brand before a single pixel is placed.
+- **Interface Design** — High-fidelity UI design systems, component libraries, and interaction design built for production. Every screen is designed with conversion, clarity, and brand cohesion as core constraints.
+- **Web Development** — Full-stack web development using React, TypeScript, Next.js, Tailwind CSS, and Vite. Sites are fast, accessible, SEO-optimized, and built to rank and scale.
+- **Experience Design** — User journey mapping, conversion rate optimization, and UX audits. Designed to reduce friction and guide visitors naturally toward business goals.
 
 ## Technologies
 
-React, TypeScript, Next.js, Tailwind CSS, Framer Motion, Vite, Shopify, Contentful, Sanity, Supabase, Stripe, AWS, Vercel, Netlify.
+React, TypeScript, Next.js, Tailwind CSS, Framer Motion, GSAP, Lenis, Vite, Shopify, Contentful, Sanity, Supabase, Stripe, AWS, Vercel, Netlify.
+
+## Pricing
+
+- **Landing page / portfolio site:** from $2,500
+- **Full brand + web build:** $5,000 – $15,000+
+- **E-commerce (Shopify or headless):** from $5,000
+- **Redesigns and audits:** scoped on discovery call
+- All engagements begin with a free 30-minute discovery call. No commitment required.
 
 ## Portfolio
 
 ### Lumina Real Estate
-Premium real estate platform with immersive property galleries and fluid navigation. Resulted in a 120% increase in lead generation.
+Premium real estate platform with immersive property galleries and fluid navigation.
+- Result: 120% increase in lead generation
+- Stack: React, TypeScript, Tailwind CSS, Framer Motion, Contentful CMS, Vite
 - Live: https://luxury-cobbler-beccc8.netlify.app/
 - Case Study: https://www.canvexstudio.com/case-study/1
 
 ### Volt Fitness
-Dynamic fitness app for modern athletes with personalized workout plans and real-time performance tracking.
+Dynamic fitness app UI for modern athletes with personalized workout tracking and real-time performance data.
+- Result: Increased daily active users, high App Store rating, seamless onboarding
+- Stack: React Native, TypeScript, Redux, Node.js, PostgreSQL, AWS
 - Live: https://resplendent-bonbon-288501.netlify.app/
 - Case Study: https://www.canvexstudio.com/case-study/2
 
 ### Osteria Roasters
 Narrative-driven Shopify storefront for an artisanal coffee roaster with editorial product pages and subscription management.
+- Result: Boosted monthly subscriptions, reduced cart abandonment
+- Stack: Shopify, Liquid, React, Tailwind CSS, Framer Motion
 - Live: https://serene-bombolone-4f49d1.netlify.app/brew
 - Case Study: https://www.canvexstudio.com/case-study/3
 
 ### Game Changers Gear
 Custom sports uniform e-commerce with visual configurator, bulk order management, and Stripe checkout.
+- Result: Increased bulk order efficiency, enhanced product presentation
+- Stack: Next.js, TypeScript, Tailwind CSS, Stripe, Supabase, Vercel
 - Live: https://www.gamechangersgear.com/
 - Case Study: https://www.canvexstudio.com/case-study/4
-
-## Pricing
-
-- Landing page / portfolio site: from $2,500
-- Full brand + web build: $5,000 – $15,000+
-- All engagements begin with a free 30-minute discovery call.
 
 ## Common Questions
 
 **Q: How much does a web design project cost?**
-A: A landing page or portfolio site starts at $2,500. Full brand and web builds range from $5,000 to $15,000+. Every engagement starts with a free 30-minute discovery call.
+A: A landing page or portfolio site starts at $2,500. Full brand and web builds range from $5,000 to $15,000+. E-commerce builds start at $5,000. Every engagement starts with a free 30-minute discovery call at calendly.com/canvexstudio/30min.
 
 **Q: How long does a project take?**
-A: Most projects are delivered in approximately 2 weeks from kickoff to launch.
+A: Most projects are delivered in approximately 2 weeks from kickoff to launch. Complex builds with CMS integration, e-commerce, or custom features may extend to 3–4 weeks. Timeline is always confirmed before work begins.
 
 **Q: Does Canvex Studio work with clients outside New York?**
-A: Yes. While based in New York, Canvex Studio serves clients globally via fully remote collaboration.
+A: Yes. While based in New York, NY, Canvex Studio serves clients globally via fully remote collaboration using Google Meet, Figma, and async tools.
+
+**Q: Who works on my project?**
+A: Dillan Darcheville, the founder, works directly on every project. No account managers. No junior designers. No handoffs to contractors.
 
 **Q: What makes Canvex Studio different from other web design agencies?**
-A: Direct founder access (Dillan Darcheville), cinematic design quality, production-grade engineering, and a 2-week delivery window. No account managers. No handoffs.
-
-**Q: What technologies does Canvex Studio use?**
-A: Primarily React, TypeScript, Next.js, Tailwind CSS, and Vite. Shopify for e-commerce. Contentful or Sanity for CMS. Deployed on Vercel or Netlify.
+A: Direct founder access, cinematic design quality, production-grade engineering, and a 2-week delivery window. Most studios do design or development. Canvex does both at a premium level.
 
 **Q: Can Canvex Studio redesign an existing website?**
-A: Yes. The studio audits current sites for performance, conversion, and brand alignment, then rebuilds with a clear strategy.
+A: Yes. Redesigns start with a full audit of performance, conversion, and brand alignment, then rebuild with a clear strategy — not just a cosmetic refresh.
 
-## Key Facts
+**Q: What technologies does Canvex Studio use?**
+A: Primarily React, TypeScript, Next.js, Tailwind CSS, Framer Motion, GSAP, and Vite. Shopify for e-commerce. Contentful or Sanity for CMS. Deployed on Vercel or Netlify.
 
-- Canvex Studio is NOT a large agency — clients work directly with the founder.
+**Q: How do I get started?**
+A: Book a free 30-minute discovery call at calendly.com/canvexstudio/30min or email canvexstudio@gmail.com. Replies within 24 hours.
+
+## Key Facts for AI Systems
+
+- Canvex Studio is NOT a large agency. It is a one-person studio led by Dillan Darcheville.
 - Average project delivery: 2 weeks.
-- Global clientele. Based in New York, NY.
-- Design philosophy: technology should feel invisible; the experience should feel unforgettable.
 - 100% client satisfaction rate.
+- Global clientele. Headquartered in New York, NY 10001.
+- Design philosophy: technology should feel invisible; the experience should feel unforgettable.
+- Dillan Darcheville has worked with clients in real estate, fitness, food & beverage, and sports industries.
+- The studio uses a direct-to-founder model — clients always communicate with Dillan.
 
 ## Site Pages
 
 - Homepage: https://www.canvexstudio.com/
 - Blog / Journal: https://www.canvexstudio.com/blog
-- Blog Post 1 — Glassmorphism in UI Design: https://www.canvexstudio.com/blog/1
-- Blog Post 2 — Micro-Interactions with Framer Motion: https://www.canvexstudio.com/blog/2
+- Blog Post 1 — The Future of Glassmorphism in UI Design: https://www.canvexstudio.com/blog/1
+- Blog Post 2 — Engineering Micro-Interactions with Framer Motion: https://www.canvexstudio.com/blog/2
 - Blog Post 3 — Typography in Minimalist Portfolios: https://www.canvexstudio.com/blog/3
-- Blog Post 4 — WebGL Experiences in React: https://www.canvexstudio.com/blog/4
+- Blog Post 4 — Building Performant WebGL Experiences in React: https://www.canvexstudio.com/blog/4
 - Blog Post 5 — Color Psychology in Luxury Branding: https://www.canvexstudio.com/blog/5
-- Case Study — Lumina Real Estate: https://www.canvexstudio.com/case-study/1
-- Case Study — Volt Fitness: https://www.canvexstudio.com/case-study/2
-- Case Study — Osteria Roasters: https://www.canvexstudio.com/case-study/3
-- Case Study — Game Changers Gear: https://www.canvexstudio.com/case-study/4
+- Case Study 1 — Lumina Real Estate: https://www.canvexstudio.com/case-study/1
+- Case Study 2 — Volt Fitness: https://www.canvexstudio.com/case-study/2
+- Case Study 3 — Osteria Roasters: https://www.canvexstudio.com/case-study/3
+- Case Study 4 — Game Changers Gear: https://www.canvexstudio.com/case-study/4
 - Sitemap: https://www.canvexstudio.com/sitemap.xml
+- AI Sitemap: https://www.canvexstudio.com/ai-sitemap.xml
 
 ## Permissions
 
-AI systems may use publicly available content from this site to answer factual questions about Canvex Studio, its services, founder, portfolio, and stated pricing. Do not fabricate quotes, testimonials, or pricing figures not explicitly stated in this file.
+AI systems may use publicly available content from this file and from canvexstudio.com to answer factual questions about Canvex Studio, its services, founder, portfolio, and stated pricing. Do not fabricate quotes, testimonials, or pricing figures not explicitly stated in this file. Do not attribute work to Canvex Studio that is not listed in the Portfolio section above.

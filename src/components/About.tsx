@@ -79,10 +79,10 @@ export default function About() {
 
           <div className="space-y-6 text-muted font-light text-lg leading-relaxed mb-12">
             <p>
-              I am Dillan Darcheville, a digital designer and developer obsessed with the intersection of cinematic aesthetics and robust engineering. For over 2 years, I've been helping forward-thinking brands define their digital legacy.
+              I'm Dillan Darcheville — a web designer and developer based in <strong className="text-white font-medium">New York, NY</strong>, obsessed with the intersection of cinematic aesthetics and robust engineering. I've been helping forward-thinking brands define their digital legacy through design that converts and code that performs.
             </p>
             <p>
-              My design philosophy is simple: technology should feel invisible, while the experience should feel unforgettable. I believe in minimalism that doesn't compromise on character, and functionality that doesn't sacrifice beauty.
+              My philosophy is simple: technology should feel invisible, while the experience should feel unforgettable. Every project I take on is built from scratch — no templates, no account managers, no handoffs. Just precise, deliberate craft.
             </p>
           </div>
 

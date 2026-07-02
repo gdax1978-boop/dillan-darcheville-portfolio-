@@ -172,33 +172,36 @@ export default function BlogPost() {
   const postId = id ?? '1';
   const post = POSTS[postId] ?? POSTS['1'];
 
+  const wordCount = post.content.trim().split(/\s+/).length;
+
   const articleSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
     datePublished: post.isoDate,
     dateModified: post.isoDate,
+    wordCount,
+    timeRequired: post.readTime,
+    inLanguage: 'en-US',
     author: {
       '@type': 'Person',
       name: 'Dillan Darcheville',
       url: 'https://www.canvexstudio.com/',
+      jobTitle: 'Web Designer & Developer',
+      address: { '@type': 'PostalAddress', addressLocality: 'New York', addressRegion: 'NY', addressCountry: 'US' },
     },
     publisher: {
       '@type': 'Organization',
       name: 'Canvex Studio',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://www.canvexstudio.com/dillan-profile.webp',
-      },
+      url: 'https://www.canvexstudio.com',
+      logo: { '@type': 'ImageObject', url: 'https://www.canvexstudio.com/dillan-profile.webp' },
     },
-    image: post.image,
+    image: { '@type': 'ImageObject', url: post.image, width: 2000, height: 1333 },
     articleSection: post.category,
     url: `https://www.canvexstudio.com/blog/${postId}`,
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://www.canvexstudio.com/blog/${postId}`,
-    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://www.canvexstudio.com/blog/${postId}` },
+    isPartOf: { '@type': 'Blog', '@id': 'https://www.canvexstudio.com/blog', name: 'The Journal — Canvex Studio' },
   };
 
   const breadcrumbSchema = {
@@ -281,10 +284,41 @@ export default function BlogPost() {
           })}
         </div>
 
-        <div className="mt-20 pt-12 border-t border-white/10">
-          <p className="text-white/50 text-sm font-light mb-2">Written by</p>
-          <p className="text-white font-semibold">Dillan Darcheville</p>
-          <p className="text-white/50 text-sm">Web Designer & Developer, Canvex Studio — New York</p>
+        <div className="mt-20 pt-12 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
+          <div>
+            <p className="text-white/50 text-sm font-light mb-1">Written by</p>
+            <p className="text-white font-semibold">Dillan Darcheville</p>
+            <p className="text-white/50 text-sm">Web Designer &amp; Developer — <span className="text-[#00F0FF]">Canvex Studio, New York</span></p>
+          </div>
+          <Link
+            to="/#contact"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#00F0FF] text-black rounded-full font-medium text-sm hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all whitespace-nowrap"
+          >
+            Start a Project
+          </Link>
+        </div>
+
+        {/* Related posts */}
+        <div className="mt-16">
+          <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-6">More from the Journal</p>
+          <div className="flex flex-col gap-3">
+            {Object.entries(POSTS)
+              .filter(([id]) => id !== postId)
+              .slice(0, 3)
+              .map(([id, p]) => (
+                <Link
+                  key={id}
+                  to={`/blog/${id}`}
+                  className="flex items-center gap-4 p-4 rounded-xl border border-white/10 hover:border-[#00F0FF]/40 bg-white/[0.02] hover:bg-white/[0.04] transition-all group"
+                >
+                  <img src={p.image.replace('w=2000', 'w=120')} alt={p.title} width={60} height={60} className="w-14 h-14 object-cover rounded-lg shrink-0" loading="lazy" />
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#00F0FF] mb-1">{p.category}</p>
+                    <p className="text-sm font-medium text-white group-hover:text-[#00F0FF] transition-colors leading-snug">{p.title}</p>
+                  </div>
+                </Link>
+              ))}
+          </div>
         </div>
       </div>
     </main>

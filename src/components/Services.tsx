@@ -107,8 +107,8 @@ export default function Services() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#00F0FF]">VALUE.</span>
               </h2>
               <p className="text-white/60 text-xl font-light leading-relaxed max-w-md">
-                We specialize in deep design interventions that transform how people
-                interact with your brand across all digital touchpoints.
+                New York-based studio specializing in deep design interventions that transform how people
+                interact with your brand across all digital touchpoints — from brand identity to production-ready code.
               </p>
             </div>
 

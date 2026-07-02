@@ -1,97 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- AI-Readable Sitemap for Canvex Studio — https://www.canvexstudio.com -->
-<!-- This file supplements robots.txt and llms.txt for AI crawler discovery -->
-<site xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <metadata>
+<!-- AI Sitemap for Canvex Studio — https://www.canvexstudio.com | Last updated: 2026-07-02 -->
+<ai-sitemap>
+  <entity type="Organization">
     <name>Canvex Studio</name>
     <founder>Dillan Darcheville</founder>
-    <description>New York-based web design and development studio specializing in cinematic digital experiences, UI design, and web development for global brands.</description>
     <location>New York, NY, USA</location>
     <email>canvexstudio@gmail.com</email>
-    <url>https://www.canvexstudio.com</url>
-    <llms>https://www.canvexstudio.com/llms.txt</llms>
-    <sitemap>https://www.canvexstudio.com/sitemap.xml</sitemap>
-  </metadata>
-
+    <website>https://www.canvexstudio.com</website>
+    <booking>https://calendly.com/canvexstudio/30min</booking>
+    <description>Independent web design and development studio delivering cinematic digital experiences, high-end interface design, and production-grade web development for global brands.</description>
+  </entity>
   <pages>
-    <page type="homepage" priority="primary">
-      <url>https://www.canvexstudio.com/</url>
-      <title>Dillan Darcheville | Web Designer &amp; Developer — New York</title>
-      <description>Portfolio and studio home. Includes work, services, about, blog preview, and contact sections.</description>
-      <sections>Work, Services, FAQ, About, Blog, Contact</sections>
-    </page>
-
-    <page type="blog-index" priority="high">
-      <url>https://www.canvexstudio.com/blog</url>
-      <title>The Journal | Canvex Studio</title>
-      <description>Design and development insights by Dillan Darcheville. 5 published articles on UI trends, motion design, typography, WebGL, and color theory.</description>
-    </page>
-
-    <page type="article" priority="medium">
-      <url>https://www.canvexstudio.com/blog/1</url>
-      <title>The Future of Glassmorphism in UI Design</title>
-      <topic>Design Trends</topic>
-      <published>2026-04-24</published>
-    </page>
-
-    <page type="article" priority="medium">
-      <url>https://www.canvexstudio.com/blog/2</url>
-      <title>Engineering Flawless Micro-Interactions with Framer Motion</title>
-      <topic>Web Development</topic>
-      <published>2026-04-10</published>
-    </page>
-
-    <page type="article" priority="medium">
-      <url>https://www.canvexstudio.com/blog/3</url>
-      <title>Why Typography is the Backbone of Minimalist Portfolios</title>
-      <topic>Typography</topic>
-      <published>2026-03-28</published>
-    </page>
-
-    <page type="article" priority="medium">
-      <url>https://www.canvexstudio.com/blog/4</url>
-      <title>Building Performant WebGL Experiences in React</title>
-      <topic>Creative Coding</topic>
-      <published>2026-03-15</published>
-    </page>
-
-    <page type="article" priority="medium">
-      <url>https://www.canvexstudio.com/blog/5</url>
-      <title>The Psychology of Color in Luxury Branding</title>
-      <topic>Art Direction</topic>
-      <published>2026-02-20</published>
-    </page>
-
-    <page type="case-study" priority="high">
-      <url>https://www.canvexstudio.com/case-study/1</url>
-      <title>Lumina Real Estate Case Study | Canvex Studio</title>
-      <client>Lumina Group</client>
-      <result>120% increase in lead generation</result>
-      <stack>React, TypeScript, Tailwind CSS, Framer Motion, Contentful CMS</stack>
-    </page>
-
-    <page type="case-study" priority="high">
-      <url>https://www.canvexstudio.com/case-study/2</url>
-      <title>Volt Fitness Case Study | Canvex Studio</title>
-      <client>Volt Athletics</client>
-      <result>Increased daily active users, seamless onboarding</result>
-      <stack>React Native, TypeScript, Redux, Node.js, PostgreSQL, AWS</stack>
-    </page>
-
-    <page type="case-study" priority="high">
-      <url>https://www.canvexstudio.com/case-study/3</url>
-      <title>Osteria Roasters Case Study | Canvex Studio</title>
-      <client>Osteria Coffee Co.</client>
-      <result>Boosted subscriptions, reduced cart abandonment</result>
-      <stack>Shopify, Liquid, React, Tailwind CSS, Framer Motion</stack>
-    </page>
-
-    <page type="case-study" priority="high">
-      <url>https://www.canvexstudio.com/case-study/4</url>
-      <title>Game Changers Gear Case Study | Canvex Studio</title>
-      <client>Game Changers</client>
-      <result>Increased bulk order efficiency, optimized user journey</result>
-      <stack>Next.js, TypeScript, Tailwind CSS, Stripe, Supabase, Vercel</stack>
-    </page>
+    <page priority="1.0"><url>https://www.canvexstudio.com/</url><title>Dillan Darcheville — Web Designer and Developer, New York</title></page>
+    <page priority="0.9"><url>https://www.canvexstudio.com/blog</url><title>The Journal — Design and Development Insights</title></page>
+    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/1</url><title>Lumina Real Estate Case Study</title></page>
+    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/2</url><title>Volt Fitness Case Study</title></page>
+    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/3</url><title>Osteria Roasters Case Study</title></page>
+    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/4</url><title>Game Changers Gear Case Study</title></page>
+    <page priority="0.8"><url>https://www.canvexstudio.com/blog/1</url><title>The Future of Glassmorphism in UI Design</title></page>
+    <page priority="0.8"><url>https://www.canvexstudio.com/blog/2</url><title>Engineering Micro-Interactions with Framer Motion</title></page>
+    <page priority="0.8"><url>https://www.canvexstudio.com/blog/3</url><title>Typography in Minimalist Portfolios</title></page>
+    <page priority="0.8"><url>https://www.canvexstudio.com/blog/4</url><title>Building Performant WebGL Experiences in React</title></page>
+    <page priority="0.8"><url>https://www.canvexstudio.com/blog/5</url><title>Color Psychology in Luxury Branding</title></page>
   </pages>
-</site>
+  <services>
+    <service><name>Creative Direction</name><price>from $2,500</price></service>
+    <service><name>Interface Design</name><price>from $2,500</price></service>
+    <service><name>Web Development</name><price>from $2,500</price></service>
+    <service><name>Experience Design</name><price>from $2,500</price></service>
+  </services>
+</ai-sitemap>
