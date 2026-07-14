@@ -91,7 +91,7 @@ export default function BlogIndex() {
 
   useSEO(
     'The Journal | Canvex Studio — Design & Development Insights',
-    'Web design and development insights by Dillan Darcheville of Canvex Studio, New York. Deep dives on UI design, React engineering, typography, and creative direction.',
+    'Web design and development insights by Dillan Darcheville of Canvex Studio, New York. Deep dives on UI design, React engineering, and creative direction.',
     '/blog',
     schemas
   );
