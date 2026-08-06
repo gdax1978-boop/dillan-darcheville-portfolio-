@@ -1,33 +1,18 @@
-import { motion } from 'motion/react';
+﻿import { motion } from 'motion/react';
 import { ArrowUpRight, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { POSTS as ALL_POSTS } from '../data/posts';
 
-const POSTS = [
-  {
-    id: 1,
-    title: 'The Future of Glassmorphism in UI Design',
-    date: 'Apr 24, 2026',
-    category: 'Design Trends',
-    readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?fm=webp&auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: 2,
-    title: 'Engineering Flawless Micro-Interactions with Framer Motion',
-    date: 'Apr 10, 2026',
-    category: 'Development',
-    readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?fm=webp&auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: 3,
-    title: 'Why Typography is the Backbone of Minimalist Portfolios',
-    date: 'Mar 28, 2026',
-    category: 'Typography',
-    readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?fm=webp&auto=format&fit=crop&q=80&w=800',
-  }
-];
+// Card data derived from the canonical post list so titles, dates, and URLs
+// can never drift from src/data/posts.ts.
+const POSTS = Object.values(ALL_POSTS).slice(0, 3).map((p) => ({
+  slug: p.slug,
+  title: p.title,
+  date: p.date,
+  category: p.category,
+  readTime: p.readTime,
+  image: p.image.replace('w=2000', 'w=800'),
+}));
 
 export default function BlogSection() {
   return (
@@ -45,14 +30,14 @@ export default function BlogSection() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {POSTS.map((post, index) => (
           <motion.div
-            key={post.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            key={post.slug}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ delay: index * 0.1 }}
             className="group block cursor-pointer rounded-2xl overflow-hidden border border-white/10 hover:border-[#00F0FF]/50 transition-all duration-300 bg-white/[0.02]"
           >
-            <Link to={`/blog/${post.id}`}>
+            <Link to={`/blog/${post.slug}`}>
               <div className="h-48 overflow-hidden">
                 <img
                   src={post.image}

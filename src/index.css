@@ -45,7 +45,7 @@
     selection: bg-[#00F0FF] text-black;
   }
 
-  /* Global focus-visible indicator — WCAG 2.2 AA */
+  /* Global focus-visible indicator: WCAG 2.2 AA */
   :focus-visible {
     outline: 2px solid #00F0FF;
     outline-offset: 3px;
@@ -119,7 +119,7 @@
     animation: float 6s ease-in-out infinite;
   }
 
-  /* Hero CSS animations — transform-only so content is always visible for LCP */
+  /* Hero CSS animations: transform-only so content is always visible for LCP */
   @keyframes hero-slide-up {
     from { transform: translateY(16px); }
     to   { transform: translateY(0);    }
@@ -203,6 +203,20 @@
   @keyframes pulse-glow {
     0%, 100% { opacity: 0.3; transform: scale(1); }
     50% { opacity: 0.6; transform: scale(1.05); }
+  }
+
+  /* Film-grain flicker for the hero reel */
+  @keyframes grain-flicker {
+    0%   { transform: translate(0, 0); }
+    20%  { transform: translate(-6%, 4%); }
+    40%  { transform: translate(4%, -6%); }
+    60%  { transform: translate(-4%, 6%); }
+    80%  { transform: translate(6%, -4%); }
+    100% { transform: translate(0, 0); }
+  }
+  .grain-flicker { animation: grain-flicker 0.6s steps(3) infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .grain-flicker { animation: none; }
   }
 }
 

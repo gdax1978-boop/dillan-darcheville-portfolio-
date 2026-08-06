@@ -3,164 +3,10 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowLeft, Clock } from 'lucide-react';
 import { useSEO } from '../lib/useSEO';
-
-const POSTS: Record<string, {
-  title: string;
-  seoTitle: string;
-  description: string;
-  date: string;
-  isoDate: string;
-  category: string;
-  readTime: string;
-  image: string;
-  content: string;
-}> = {
-  '1': {
-    title: 'The Future of Glassmorphism in UI Design',
-    seoTitle: 'Glassmorphism in UI Design 2026 | Canvex Studio',
-    description: 'How glassmorphism evolved from trend to foundational design language — and how to engineer performant backdrop-filter effects for layered, cinematic interfaces.',
-    date: 'Apr 24, 2026',
-    isoDate: '2026-04-24',
-    category: 'Design Trends',
-    readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?fm=webp&auto=format&fit=crop&q=80&w=2000',
-    content: `
-      Glassmorphism has evolved from a fleeting trend into a foundational design language. By blending depth, transparency, and background blur, it mimics the physical properties of frosted glass in a digital environment.
-
-      ## The Evolution of the Blur
-
-      Initially, designers used it purely for aesthetic appeal. Now, we are seeing it used strategically to establish hierarchy. The blurred background draws focus to the foreground elements, creating a natural depth of field that guides the user's eye.
-
-      ## Engineering the Effect
-
-      Creating a performant glass effect requires careful consideration of CSS properties. The backdrop-filter property is powerful, but it can be computationally expensive. We must optimize our use of blur() and saturate() to ensure smooth rendering across all devices.
-
-      ### Best Practices
-
-      1.  **Subtle Backgrounds:** The background needs enough texture or color variation for the blur to be noticeable.
-      2.  **Semi-transparent Borders:** A 1px white border with low opacity helps define the edge of the glass element.
-      3.  **Accessibility First:** Ensure text contrast remains high, regardless of what's behind the glass panel.
-
-      As we look to the future, glassmorphism will likely integrate further with 3D elements and spatial computing, creating interfaces that feel both grounded and ethereal.
-    `
-  },
-  '2': {
-    title: 'Engineering Flawless Micro-Interactions with Framer Motion',
-    seoTitle: 'Micro-Interactions with Framer Motion | Canvex Studio',
-    description: 'Micro-interactions are the invisible handshake between user and interface. A practical guide to building physics-based animations with Framer Motion that feel natural, not mechanical.',
-    date: 'Apr 10, 2026',
-    isoDate: '2026-04-10',
-    category: 'Development',
-    readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?fm=webp&auto=format&fit=crop&q=80&w=2000',
-    content: `
-      Micro-interactions are the invisible handshake between user and interface. A button that pulses when hovered, a menu that slides with weight and momentum — these moments define whether a product feels crafted or commodity.
-
-      ## Why Motion Matters
-
-      Users don't consciously register most micro-interactions, but they feel their absence immediately. Motion communicates state: something loading, something saved, something gone. Without it, interfaces feel brittle and lifeless.
-
-      ## The Framer Motion Approach
-
-      Framer Motion's declarative API makes complex animations approachable. The useSpring hook is particularly powerful for physics-based motion that feels natural rather than mechanical.
-
-      ### Core Patterns
-
-      1.  **Staggered Lists:** Animate children with staggerChildren to guide the eye through content reveals.
-      2.  **Layout Animations:** Use the layout prop to automatically animate between different states without calculating positions manually.
-      3.  **Exit Animations:** AnimatePresence enables components to animate out before unmounting — critical for smooth transitions.
-
-      The goal is always restraint. Motion should serve communication, not distract from it.
-    `
-  },
-  '3': {
-    title: 'Why Typography is the Backbone of Minimalist Portfolios',
-    seoTitle: 'Typography in Minimalist Portfolios | Canvex Studio',
-    description: 'Typography is the single most powerful tool a designer has. Before color or imagery, the choice of typeface sets the entire emotional register of a design.',
-    date: 'Mar 28, 2026',
-    isoDate: '2026-03-28',
-    category: 'Typography',
-    readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?fm=webp&auto=format&fit=crop&q=80&w=2000',
-    content: `
-      Typography is the single most powerful tool a designer has. Before color, before imagery, before layout — the choice of typeface sets the emotional register of everything that follows.
-
-      ## The Hierarchy Principle
-
-      Minimalist portfolios succeed or fail on typographic hierarchy. When there's nothing else to fall back on, the relationship between heading weight, body size, and line height must do the heavy lifting. A strong display font paired with a quiet body type creates contrast without visual noise.
-
-      ## Choosing the Right Pair
-
-      The best pairings share DNA without matching. A geometric sans-serif headline with a humanist body creates intellectual tension that keeps the reader engaged. Avoid pairing two fonts with similar personalities — they compete rather than complement.
-
-      ### Rules Worth Breaking
-
-      1.  **Size contrast:** Headlines should be dramatically larger than body text — not just slightly.
-      2.  **Weight contrast:** If both fonts are the same weight, the hierarchy collapses.
-      3.  **Whitespace:** Leading and letter-spacing are as important as the typeface itself.
-
-      Typography is architecture. Get the structure right, and everything else finds its place.
-    `
-  },
-  '4': {
-    title: 'Building Performant WebGL Experiences in React',
-    seoTitle: 'WebGL Experiences in React | Canvex Studio',
-    description: 'WebGL is the frontier of web experience. A deep dive into integrating Three.js with React Three Fiber to build immersive, performant 3D scenes in the browser.',
-    date: 'Mar 15, 2026',
-    isoDate: '2026-03-15',
-    category: 'Creative Coding',
-    readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fm=webp&auto=format&fit=crop&q=80&w=2000',
-    content: `
-      WebGL is the frontier of web experience — immersive, performant, and deeply engaging when done right. Integrating it into a React application requires a thoughtful architecture that separates the rendering loop from the component tree.
-
-      ## The Canvas Problem
-
-      React's rendering model is declarative and diffed. WebGL's rendering model is imperative and continuous. Bridging these two paradigms is the central challenge of building WebGL experiences in React.
-
-      ## Three.js and React Three Fiber
-
-      React Three Fiber (R3F) solves this elegantly by wrapping Three.js in a React-idiomatic API. Components become meshes, hooks control the animation loop, and the entire scene graph is declaratively managed.
-
-      ### Performance Priorities
-
-      1.  **Instanced Meshes:** Render thousands of objects with a single draw call using InstancedMesh.
-      2.  **Frustum Culling:** Three.js handles this automatically, but understanding it helps you structure scenes efficiently.
-      3.  **Texture Compression:** Use KTX2/Basis compressed textures to reduce GPU memory and load time dramatically.
-
-      The web can render cinematic 3D experiences. The constraint is discipline — knowing when the complexity earns its weight.
-    `
-  },
-  '5': {
-    title: 'The Psychology of Color in Luxury Branding',
-    seoTitle: 'Color Psychology in Luxury Branding | Canvex Studio',
-    description: 'Color transmits an emotional signal before a single word is read. How luxury brands use restraint, saturation, and palette precision to signal exclusivity and premium positioning.',
-    date: 'Feb 20, 2026',
-    isoDate: '2026-02-20',
-    category: 'Art Direction',
-    readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?fm=webp&auto=format&fit=crop&q=80&w=2000',
-    content: `
-      Color is the fastest communicator in a designer's toolkit. Before a single word is read, before the layout is parsed, color has already transmitted an emotional signal. In luxury branding, that signal must be precise.
-
-      ## The Language of Restraint
-
-      Luxury brands rarely use many colors. The Chanel palette is black, white, and beige. Rolex leans on gold and green. This restraint is intentional — scarcity of color signals exclusivity, just as scarcity of product does.
-
-      ## Saturation as Status
-
-      High saturation reads as accessible and energetic — think fast food, children's toys, sports brands. Low saturation reads as refined and considered. For luxury positioning, desaturating your palette even slightly shifts perception dramatically toward premium.
-
-      ### Strategic Color Choices
-
-      1.  **Deep Navy:** Projects authority and trust without the aggression of black.
-      2.  **Warm Champagne:** Signals wealth and warmth — more approachable than cold gold.
-      3.  **Charcoal over Black:** Pure black can feel harsh; charcoal retains sophistication with more nuance.
-
-      Color doesn't just describe a brand — it defines how it feels to inhabit one.
-    `
-  }
-};
+import { POSTS } from '../data/posts';
+import { findPost } from '../data/lookup';
+import { blogPostSchemas } from '../data/schemas';
+import NotFound from '../components/NotFound';
 
 export default function BlogPost() {
   const { id } = useParams();
@@ -169,58 +15,27 @@ export default function BlogPost() {
     window.scrollTo(0, 0);
   }, []);
 
-  const postId = id ?? '1';
-  const post = POSTS[postId] ?? POSTS['1'];
+  const found = findPost(id);
+  const notFound = !found;
+  const post = found ?? POSTS['1'];
 
-  const wordCount = post.content.trim().split(/\s+/).length;
-
-  const articleSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.description,
-    datePublished: post.isoDate,
-    dateModified: post.isoDate,
-    wordCount,
-    timeRequired: post.readTime,
-    inLanguage: 'en-US',
-    author: {
-      '@type': 'Person',
-      name: 'Dillan Darcheville',
-      url: 'https://www.canvexstudio.com/',
-      jobTitle: 'Web Designer & Developer',
-      address: { '@type': 'PostalAddress', addressLocality: 'New York', addressRegion: 'NY', addressCountry: 'US' },
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Canvex Studio',
-      url: 'https://www.canvexstudio.com',
-      logo: { '@type': 'ImageObject', url: 'https://www.canvexstudio.com/dillan-profile.webp' },
-    },
-    image: { '@type': 'ImageObject', url: post.image, width: 2000, height: 1333 },
-    articleSection: post.category,
-    url: `https://www.canvexstudio.com/blog/${postId}`,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://www.canvexstudio.com/blog/${postId}` },
-    isPartOf: { '@type': 'Blog', '@id': 'https://www.canvexstudio.com/blog', name: 'The Journal — Canvex Studio' },
-  };
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.canvexstudio.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Journal', item: 'https://www.canvexstudio.com/blog' },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `https://www.canvexstudio.com/blog/${postId}` },
-    ],
-  };
+  const [articleSchema, breadcrumbSchema] = blogPostSchemas(post);
 
   useSEO(
-    post.seoTitle,
-    post.description,
-    `/blog/${postId}`,
-    [articleSchema, breadcrumbSchema],
-    post.image
+    notFound ? 'Article Not Found | Canvex Studio' : post.seoTitle,
+    notFound
+      ? 'This article could not be found. Browse the Canvex Studio journal for writing on web design and development.'
+      : post.description,
+    notFound ? undefined : `/blog/${post.slug}`,
+    notFound ? undefined : [articleSchema, breadcrumbSchema],
+    notFound ? undefined : post.image,
+    'article',
+    notFound
   );
+
+  if (notFound) {
+    return <NotFound kind="article" backTo="/blog" backLabel="Back to the Journal" />;
+  }
 
   return (
     <main className="min-h-screen pt-32 pb-20 bg-[#030303] text-white relative overflow-hidden">
@@ -288,7 +103,7 @@ export default function BlogPost() {
           <div>
             <p className="text-white/50 text-sm font-light mb-1">Written by</p>
             <p className="text-white font-semibold">Dillan Darcheville</p>
-            <p className="text-white/50 text-sm">Web Designer &amp; Developer — <span className="text-[#00F0FF]">Canvex Studio, New York</span></p>
+            <p className="text-white/50 text-sm">Web Designer &amp; Developer, <span className="text-[#00F0FF]">Canvex Studio, New York</span></p>
           </div>
           <Link
             to="/#contact"
@@ -303,12 +118,12 @@ export default function BlogPost() {
           <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-6">More from the Journal</p>
           <div className="flex flex-col gap-3">
             {Object.entries(POSTS)
-              .filter(([id]) => id !== postId)
+              .filter(([, p]) => p.slug !== post.slug)
               .slice(0, 3)
               .map(([id, p]) => (
                 <Link
                   key={id}
-                  to={`/blog/${id}`}
+                  to={`/blog/${p.slug}`}
                   className="flex items-center gap-4 p-4 rounded-xl border border-white/10 hover:border-[#00F0FF]/40 bg-white/[0.02] hover:bg-white/[0.04] transition-all group"
                 >
                   <img src={p.image.replace('w=2000', 'w=120')} alt={p.title} width={60} height={60} className="w-14 h-14 object-cover rounded-lg shrink-0" loading="lazy" />

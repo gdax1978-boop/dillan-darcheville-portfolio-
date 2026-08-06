@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Globe, Figma, Zap, Layers, ChevronDown } from 'lucide-react';
 import { SpotlightCard } from '@/src/components/ui/spotlight';
@@ -6,22 +6,22 @@ import { SpotlightCard } from '@/src/components/ui/spotlight';
 const SERVICES = [
   {
     title: 'Creative Direction',
-    description: 'Defining the visual soul of your brand through cinematic design and storytelling. We craft the mood, palette, and narrative that make your brand instantly recognizable and emotionally resonant.',
+    description: 'I set the mood, palette, and visual language for your brand: the parts that make it recognizable at a glance.',
     icon: Globe
   },
   {
     title: 'Interface Design',
-    description: 'High-fidelity UI systems that bridge the gap between aesthetics and functionality. Every screen is designed with conversion, clarity, and brand cohesion as core constraints — not afterthoughts.',
+    description: 'UI systems where design and function aren\'t separate problems. Every screen is built for conversion, clarity, and brand consistency from the start, not bolted on later.',
     icon: Figma
   },
   {
     title: 'Web Development',
-    description: 'Architecting fast, responsive, and secure digital products with modern tech stacks including React, TypeScript, Next.js, and Tailwind CSS. Built to perform at scale and rank in search.',
+    description: 'Fast, responsive, secure builds with React, TypeScript, Next.js, and Tailwind CSS. Hardened with secure headers, dependency auditing, and OWASP best practices, and built to actually rank in search, not just look good.',
     icon: Zap
   },
   {
     title: 'Experience Design',
-    description: 'Mapping user journeys that are intuitive, delightful, and focused on conversion. We analyze behavior, reduce friction, and design paths that naturally guide visitors toward your business goals.',
+    description: 'I look at how people actually move through your site, then cut the friction: fewer dead ends, clearer paths to the thing they came for.',
     icon: Layers
   }
 ];
@@ -29,7 +29,7 @@ const SERVICES = [
 const FAQS = [
   {
     q: 'How much does a web design project cost?',
-    a: 'Project investment varies based on scope and complexity. A focused landing page or portfolio site typically starts at $2,500. Full brand and web builds range from $5,000 to $15,000+. Every engagement begins with a free 30-minute discovery call to scope your project accurately.'
+    a: 'Project investment varies based on scope and complexity. A focused landing page or portfolio site typically starts at $1,500. Full brand and web builds range from $3,500 to $10,000+. Every engagement begins with a free 30-minute discovery call to scope your project accurately.'
   },
   {
     q: 'How long does a web design and development project take?',
@@ -37,11 +37,15 @@ const FAQS = [
   },
   {
     q: 'What services does Canvex Studio offer?',
-    a: 'Canvex Studio offers Creative Direction, Interface Design, Web Development, and Experience Design. We handle the full digital build — from brand strategy and UI design to production-ready code and deployment.'
+    a: 'Canvex Studio offers Creative Direction, Interface Design, Web Development, and Experience Design. We handle the full digital build, from brand strategy and UI design to production-ready code and deployment.'
   },
   {
     q: 'Do you work with clients outside New York?',
     a: 'Yes. While Canvex Studio is based in New York, NY, we serve clients globally. The majority of our engagements are fully remote via Google Meet, Figma, and async collaboration tools.'
+  },
+  {
+    q: 'What industries do you design for?',
+    a: 'Canvex Studio designs for brands across real estate, fitness, food and beverage, e-commerce, and sports, including luxury real estate (Lumina), fitness apps (Volt), artisanal coffee (Osteria Roasters), and custom sports gear (Game Changers Gear).'
   },
   {
     q: 'What technologies do you use to build websites?',
@@ -49,11 +53,11 @@ const FAQS = [
   },
   {
     q: 'Can you redesign an existing website?',
-    a: 'Absolutely. Redesigns are a core part of our work. We audit your current site for performance, conversion, and brand alignment, then rebuild with a clear strategy — not just a cosmetic refresh.'
+    a: 'Yes. We audit your current site for performance, conversion, and brand alignment, then rebuild with a clear strategy behind it, not just a fresh coat of paint.'
   },
   {
     q: 'What makes Canvex Studio different from other web design agencies?',
-    a: 'We combine cinematic design sensibility with engineering precision. Most studios do one or the other. We deliver pixel-perfect, production-grade work with a 2-week turnaround and a direct line to the designer and developer building your project — no account managers, no handoffs.'
+    a: 'Most studios are strong at design or strong at engineering, rarely both. We do both, with a 2-week turnaround and a direct line to the person actually designing and building your project, no account managers, no handoffs.'
   },
   {
     q: 'How do I get started with Canvex Studio?',
@@ -107,8 +111,8 @@ export default function Services() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#00F0FF]">VALUE.</span>
               </h2>
               <p className="text-white/60 text-xl font-light leading-relaxed max-w-md">
-                New York-based studio specializing in deep design interventions that transform how people
-                interact with your brand across all digital touchpoints — from brand identity to production-ready code.
+                A New York studio that handles the full build: brand identity, interface design,
+                and the code that ships it.
               </p>
             </div>
 
@@ -116,9 +120,9 @@ export default function Services() {
               {SERVICES.map((service, index) => (
                 <motion.div
                   key={service.title}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  initial={{ x: 20 }}
+                  whileInView={{ x: 0 }}
+                  viewport={{ once: true, amount: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
                   <SpotlightCard className="group relative p-6 h-full">

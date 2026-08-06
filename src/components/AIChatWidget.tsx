@@ -7,7 +7,7 @@ const SYSTEM_PROMPT = `You are Ava, a concise and friendly AI assistant embedded
 About Dillan:
 - Full name: Dillan Darcheville
 - Studio: Canvex Studio
-- Location: New York, NY — serves clients globally
+- Location: New York, NY. Serves clients globally
 - Email: canvexstudio@gmail.com
 - Book a free 30-min discovery call: https://calendly.com/canvexstudio/30min
 - Services: Creative Direction, Interface Design, Web Development, Experience Design
@@ -17,8 +17,8 @@ About Dillan:
 - Specialties: cinematic digital experiences, luxury brand aesthetics, conversion-optimized design
 
 Your rules:
-- Be warm, brief, and professional — max 2-3 sentences per reply unless detail is truly needed
-- For pricing questions: "Pricing depends on project scope — book a free discovery call to get a tailored quote"
+- Be warm, brief, and professional: max 2-3 sentences per reply unless detail is truly needed
+- For pricing questions: "Pricing depends on project scope. Book a free discovery call to get a tailored quote"
 - For booking: always share the Calendly link https://calendly.com/canvexstudio/30min
 - Never invent facts not listed above
 - Encourage action: send a message or book a call
@@ -77,7 +77,7 @@ export default function AIChatWidget() {
     if (!apiKey) {
       setMessages(prev => [...prev, {
         role: 'assistant',
-        text: "I'm not fully connected yet — reach Dillan directly at canvexstudio@gmail.com or book a call at calendly.com/canvexstudio/30min"
+        text: "I'm not fully connected yet, reach Dillan directly at canvexstudio@gmail.com or book a call at calendly.com/canvexstudio/30min"
       }]);
       setLoading(false);
       return;

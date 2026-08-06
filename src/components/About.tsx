@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import { motion, useInView } from 'motion/react';
 
 const SKILLS = [
@@ -7,12 +7,13 @@ const SKILLS = [
   { name: 'Creative Direction', level: 90 },
   { name: 'Tailwind CSS', level: 94 },
   { name: 'Experience Design', level: 88 },
+  { name: 'Web Security & Hardening', level: 87 },
   { name: 'AI-Assisted Development', level: 85 },
 ];
 
 function SkillBar({ name, level, index }: { name: string; level: number; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-50px' });
+  const inView = useInView(ref, { once: true, amount: 0 });
 
   return (
     <div ref={ref} className="flex flex-col gap-2">
@@ -20,8 +21,8 @@ function SkillBar({ name, level, index }: { name: string; level: number; index: 
         <span className="text-sm font-light text-white/80">{name}</span>
         <motion.span
           className="text-xs font-bold text-[#00F0FF]"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
+          initial={{ opacity: 1 }}
+          animate={inView ? { opacity: 1 } : { opacity: 1 }}
           transition={{ delay: index * 0.1 + 0.5 }}
         >
           {level}%
@@ -45,9 +46,9 @@ export default function About() {
     <section id="about" aria-label="About" className="py-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          initial={{ x: -20 }}
+          whileInView={{ x: 0 }}
+          viewport={{ once: true, amount: 0 }}
           className="relative"
         >
           <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-[#0A0A0A] border border-white/5 relative z-10">
@@ -69,9 +70,9 @@ export default function About() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          initial={{ x: 20 }}
+          whileInView={{ x: 0 }}
+          viewport={{ once: true, amount: 0 }}
         >
           <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight mb-8 uppercase">
             BEYOND THE <br /> PIXELS.
@@ -79,10 +80,10 @@ export default function About() {
 
           <div className="space-y-6 text-muted font-light text-lg leading-relaxed mb-12">
             <p>
-              I'm Dillan Darcheville — a web designer and developer based in <strong className="text-white font-medium">New York, NY</strong>, obsessed with the intersection of cinematic aesthetics and robust engineering. I've been helping forward-thinking brands define their digital legacy through design that converts and code that performs.
+              I'm Dillan Darcheville, a web designer and developer based in <strong className="text-white font-medium">New York, NY</strong>. I care about both sides of the work: design that converts and code that holds up under real use.
             </p>
             <p>
-              My philosophy is simple: technology should feel invisible, while the experience should feel unforgettable. Every project I take on is built from scratch — no templates, no account managers, no handoffs. Just precise, deliberate craft.
+              Every project starts from scratch: no templates, no account managers, no handoffs. Just one person doing the work start to finish.
             </p>
           </div>
 

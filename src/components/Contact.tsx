@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, CheckCircle, AlertCircle, CalendarDays, MessageSquare, ExternalLink } from 'lucide-react';
 import emailjs from '@emailjs/browser';
@@ -64,12 +64,12 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
 
-          {/* Left column — headline + context */}
+          {/* Left column, headline + context */}
           <div>
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={{ y: 20 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: true, amount: 0 }}
               className="text-5xl md:text-7xl lg:text-6xl xl:text-7xl font-display font-bold tracking-tighter mb-8 uppercase"
             >
               LET'S <br /> COLLABORATE.
@@ -90,11 +90,11 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right column — tabbed panel */}
+          {/* Right column, tabbed panel */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{ x: 20 }}
+            whileInView={{ x: 0 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ delay: 0.2 }}
           >
             {/* Tab switcher */}
@@ -182,14 +182,14 @@ export default function Contact() {
                         <><CheckCircle className="w-4 h-4" /> Message Sent!</>
                       )}
                       {status === 'error' && (
-                        <><AlertCircle className="w-4 h-4" /> Failed — Try Again</>
+                        <><AlertCircle className="w-4 h-4" /> Failed. Try Again</>
                       )}
                       <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                     </button>
 
                     <div aria-live="polite" aria-atomic="true" className="text-sm text-center">
                       {status === 'success' && (
-                        <p className="text-[#00F0FF]">Your message is on its way — expect a reply within 24 hours.</p>
+                        <p className="text-[#00F0FF]">Your message is on its way. Expect a reply within 24 hours.</p>
                       )}
                       {status === 'error' && (
                         <p role="alert" className="text-red-400">

@@ -6,37 +6,37 @@ import { GlowingStarsBackgroundCard } from '@/src/components/ui/glowing-stars';
 
 const PROJECTS = [
   {
-    id: 1,
+    slug: 'lumina-real-estate',
     title: 'Lumina Real Estate',
     category: 'Real Estate / Luxury',
-    description: 'A premium real estate platform showcasing high-end properties with immersive galleries.',
+    description: 'A real estate platform for high-end listings, built around large, fast-loading photo galleries.',
     image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?fm=webp&auto=format&fit=crop&q=80&w=1200',
     link: 'https://luxury-cobbler-beccc8.netlify.app/',
     span: 'col-span-1 md:col-span-2 row-span-2'
   },
   {
-    id: 2,
+    slug: 'volt-fitness',
     title: 'Volt Fitness',
     category: 'Fitness / Lifestyle',
-    description: 'A dynamic fitness application for modern athletes with personalized workout plans.',
+    description: 'A fitness app built around personalized workout plans and progress tracking.',
     image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?fm=webp&auto=format&fit=crop&q=80&w=1200',
     link: 'https://resplendent-bonbon-288501.netlify.app/#home',
     span: 'col-span-1 row-span-1'
   },
   {
-    id: 3,
+    slug: 'osteria-roasters',
     title: 'Osteria Roasters',
     category: 'E-Commerce / Coffee',
-    description: 'An artisanal coffee shop digital experience with seamless online ordering.',
+    description: 'An online store for an artisanal coffee roaster, built for easy ordering and subscriptions.',
     image: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?fm=webp&auto=format&fit=crop&q=80&w=1200',
     link: 'https://serene-bombolone-4f49d1.netlify.app/brew',
     span: 'col-span-1 row-span-1'
   },
   {
-    id: 4,
+    slug: 'game-changers-gear',
     title: 'Game Changers Gear',
     category: 'E-Commerce / Sports',
-    description: 'Custom, high-performance baseball and softball uniforms built for champions.',
+    description: 'Custom baseball and softball uniforms, ordered online team by team.',
     image: 'https://images.unsplash.com/photo-1508344928928-7165b67de128?fm=webp&auto=format&fit=crop&q=80&w=1200',
     link: 'https://www.gamechangersgear.com/',
     span: 'col-span-1 md:col-span-2 row-span-1'
@@ -91,19 +91,34 @@ export default function Projects() {
         </div>
       </div>
 
+      {/* Dock target for the cinematic hero reel (desktop only). The fixed reel
+          scales down and lands exactly here, so the hero becomes the portfolio. */}
+      <div className="hidden lg:block mb-12">
+        <div className="flex items-center gap-3 mb-3 text-[10px] font-mono uppercase tracking-widest text-white/40">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF]" />
+          Showreel · 2.39:1
+        </div>
+        <div
+          id="reel-dock"
+          aria-hidden="true"
+          className="relative w-full rounded-3xl overflow-hidden border border-white/10 bg-black/40"
+          style={{ aspectRatio: '2.39 / 1' }}
+        />
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[300px]">
         {PROJECTS.map((project, index) => (
           <motion.div
-            key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            key={project.slug}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ delay: index * 0.1 }}
             className={project.span}
           >
             <TiltCard
               className="w-full h-full group relative overflow-hidden rounded-3xl bg-[#0A0A0A] border border-white/5 cursor-pointer hover:shadow-[0_0_40px_rgba(0,240,255,0.2)] transition-shadow duration-500"
-              onClick={() => navigate(`/case-study/${project.id}`)}
+              onClick={() => navigate(`/case-study/${project.slug}`)}
             >
               <img
                 src={project.image}
@@ -137,7 +152,7 @@ export default function Projects() {
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
-                    to={`/case-study/${project.id}`}
+                    to={`/case-study/${project.slug}`}
                     className="p-3 rounded-full bg-black/50 backdrop-blur-md text-white border border-white/20 hover:scale-110 hover:border-[#00F0FF]/50 hover:shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all focus-visible:ring-2 focus-visible:ring-[#00F0FF]"
                     aria-label={`View ${project.title} Case Study`}
                   >

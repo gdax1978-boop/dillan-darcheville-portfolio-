@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- AI Sitemap for Canvex Studio — https://www.canvexstudio.com | Last updated: 2026-07-02 -->
+<!-- AI Sitemap for Canvex Studio, https://www.canvexstudio.com | Last updated: 2026-07-02 -->
 <ai-sitemap>
   <entity type="Organization">
     <name>Canvex Studio</name>
@@ -11,17 +11,17 @@
     <description>Independent web design and development studio delivering cinematic digital experiences, high-end interface design, and production-grade web development for global brands.</description>
   </entity>
   <pages>
-    <page priority="1.0"><url>https://www.canvexstudio.com/</url><title>Dillan Darcheville — Web Designer and Developer, New York</title></page>
-    <page priority="0.9"><url>https://www.canvexstudio.com/blog</url><title>The Journal — Design and Development Insights</title></page>
-    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/1</url><title>Lumina Real Estate Case Study</title></page>
-    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/2</url><title>Volt Fitness Case Study</title></page>
-    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/3</url><title>Osteria Roasters Case Study</title></page>
-    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/4</url><title>Game Changers Gear Case Study</title></page>
-    <page priority="0.8"><url>https://www.canvexstudio.com/blog/1</url><title>The Future of Glassmorphism in UI Design</title></page>
-    <page priority="0.8"><url>https://www.canvexstudio.com/blog/2</url><title>Engineering Micro-Interactions with Framer Motion</title></page>
-    <page priority="0.8"><url>https://www.canvexstudio.com/blog/3</url><title>Typography in Minimalist Portfolios</title></page>
-    <page priority="0.8"><url>https://www.canvexstudio.com/blog/4</url><title>Building Performant WebGL Experiences in React</title></page>
-    <page priority="0.8"><url>https://www.canvexstudio.com/blog/5</url><title>Color Psychology in Luxury Branding</title></page>
+    <page priority="1.0"><url>https://www.canvexstudio.com/</url><title>Dillan Darcheville, Web Designer and Developer, New York</title></page>
+    <page priority="0.9"><url>https://www.canvexstudio.com/blog</url><title>The Journal, Design and Development Insights</title></page>
+    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/lumina-real-estate</url><title>Lumina Real Estate Case Study</title></page>
+    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/volt-fitness</url><title>Volt Fitness Case Study</title></page>
+    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/osteria-roasters</url><title>Osteria Roasters Case Study</title></page>
+    <page priority="0.9"><url>https://www.canvexstudio.com/case-study/game-changers-gear</url><title>Game Changers Gear Case Study</title></page>
+    <page priority="0.8"><url>https://www.canvexstudio.com/blog/glassmorphism-in-ui-design</url><title>The Future of Glassmorphism in UI Design</title></page>
+    <page priority="0.8"><url>https://www.canvexstudio.com/blog/micro-interactions-with-framer-motion</url><title>Engineering Micro-Interactions with Framer Motion</title></page>
+    <page priority="0.8"><url>https://www.canvexstudio.com/blog/typography-in-minimalist-portfolios</url><title>Typography in Minimalist Portfolios</title></page>
+    <page priority="0.8"><url>https://www.canvexstudio.com/blog/webgl-experiences-in-react</url><title>Building Performant WebGL Experiences in React</title></page>
+    <page priority="0.8"><url>https://www.canvexstudio.com/blog/color-psychology-in-luxury-branding</url><title>Color Psychology in Luxury Branding</title></page>
   </pages>
   <services>
     <service><name>Creative Direction</name><price>from $2,500</price></service>

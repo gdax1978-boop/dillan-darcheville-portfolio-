@@ -1,6 +1,17 @@
 {
+  "redirects": [
+    { "source": "/blog/1", "destination": "/blog/glassmorphism-in-ui-design", "permanent": true },
+    { "source": "/blog/2", "destination": "/blog/micro-interactions-with-framer-motion", "permanent": true },
+    { "source": "/blog/3", "destination": "/blog/typography-in-minimalist-portfolios", "permanent": true },
+    { "source": "/blog/4", "destination": "/blog/webgl-experiences-in-react", "permanent": true },
+    { "source": "/blog/5", "destination": "/blog/color-psychology-in-luxury-branding", "permanent": true },
+    { "source": "/case-study/1", "destination": "/case-study/lumina-real-estate", "permanent": true },
+    { "source": "/case-study/2", "destination": "/case-study/volt-fitness", "permanent": true },
+    { "source": "/case-study/3", "destination": "/case-study/osteria-roasters", "permanent": true },
+    { "source": "/case-study/4", "destination": "/case-study/game-changers-gear", "permanent": true }
+  ],
   "rewrites": [
-    { "source": "/((?!.*\\.[^/]+$).*)", "destination": "/index.html" }
+    { "source": "/((?!api/)(?!.*\\.[^/]+$).*)", "destination": "/index.html" }
   ],
   "headers": [
     {

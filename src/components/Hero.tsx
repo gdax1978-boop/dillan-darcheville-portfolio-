@@ -1,11 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { ArrowUpRight, CalendarDays } from 'lucide-react';
-import Hls from 'hls.js';
+import React, { useRef, useEffect } from 'react';
+import { ArrowUpRight, CalendarDays, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { Spotlight } from '@/src/components/ui/spotlight';
 import { ShimmerButton } from '@/src/components/ui/shimmer-button';
-
-const HLS_URL = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
+import HeroReel from './HeroReel';
 
 const STATS = [
   { value: '2 Wks', label: 'Avg. Turnaround' },
@@ -13,13 +12,6 @@ const STATS = [
   { value: 'Global', label: 'Clientele' },
 ];
 
-function getTimeGreeting() {
-  const h = new Date().getHours();
-  if (h >= 5 && h < 12) return { text: 'Good Morning — Available for New Projects', pulse: true };
-  if (h >= 12 && h < 18) return { text: 'Available for New Projects', pulse: true };
-  if (h >= 18 && h < 22) return { text: 'Taking Evening Inquiries', pulse: true };
-  return { text: 'Available — Replies by Morning EST', pulse: false };
-}
 
 function MagneticButton({ href, children, primary }: {
   href: string;
@@ -78,20 +70,12 @@ function MagneticButton({ href, children, primary }: {
 }
 
 export default function Hero() {
-  const [greeting, setGreeting] = useState(getTimeGreeting());
-  const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => setGreeting(getTimeGreeting()), 60_000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      tl.from('.hero-badge', { y: -20, opacity: 0, duration: 0.8 })
-        .from('.hero-title', { y: 60, opacity: 0, duration: 1, skewY: 3 }, '-=0.4')
+      tl.from('.hero-title', { y: 60, opacity: 0, duration: 1, skewY: 3 })
         .from('.hero-sub', { y: 30, opacity: 0, duration: 0.8 }, '-=0.5')
         .from('.hero-cta', { y: 20, opacity: 0, duration: 0.7 }, '-=0.4')
         .from('.hero-stats > *', { y: 20, opacity: 0, duration: 0.6, stagger: 0.1 }, '-=0.3');
@@ -99,67 +83,33 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      // Safari — native HLS support
-      video.src = HLS_URL;
-    } else if (Hls.isSupported()) {
-      const hls = new Hls({ startLevel: -1, autoStartLoad: true });
-      hls.loadSource(HLS_URL);
-      hls.attachMedia(video);
-      return () => hls.destroy();
-    }
-  }, []);
-
   return (
     <section ref={heroRef} aria-label="Hero" className="relative min-h-screen flex flex-col items-center px-6 overflow-hidden bg-[#030303]">
-      {/* Video background */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        style={{ opacity: 0.75 }}
-      />
+      {/* Cinematic case-study reel, docks into the Work section on scroll */}
+      <HeroReel />
 
-      {/* Dark gradient overlay to keep text readable */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#030303]/40 via-transparent to-[#030303]/60 pointer-events-none" />
+      {/* Dark gradient overlay to keep text readable (above the reel). Stronger on
+          mobile where the reel fills the screen behind the copy. */}
+      <div className="absolute inset-0 z-[13] bg-gradient-to-b from-[#030303]/70 via-[#030303]/25 to-[#030303]/90 md:from-[#030303]/50 md:via-[#030303]/10 md:to-[#030303]/70 pointer-events-none" />
 
       {/* Aceternity spotlight */}
-      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#00F0FF" />
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20 z-[13]" fill="#00F0FF" />
 
-      {/* Accent orbs on top of video */}
-      <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
-        <div className="hero-orb-1 absolute top-1/4 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-[#00F0FF]/20 to-purple-900/10 rounded-full blur-[100px]" />
-        <div className="hero-orb-2 absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-purple-900/20 to-[#00F0FF]/10 rounded-full blur-[100px]" />
-      </div>
+      <div className="relative z-20 max-w-5xl w-full text-center mt-32 md:mt-44 mb-16 px-1">
 
-      <div className="relative z-10 max-w-5xl w-full text-center mt-44 mb-16">
 
-        {/* Time-aware availability badge */}
-        <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00F0FF]/30 bg-[#00F0FF]/5 text-[#00F0FF] text-xs font-semibold uppercase tracking-widest mb-10 shadow-[0_0_20px_rgba(0,240,255,0.1)]">
-          <span className={`w-2 h-2 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF] ${greeting.pulse ? 'animate-pulse' : ''}`} />
-          {greeting.text}
-        </div>
-
-        <h1 className="hero-title text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-none tracking-tighter mb-12 text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+        <h1 className="hero-title text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.95] tracking-tighter mb-6 md:mb-12 text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">
           CRAFTING <br />
           <span className="text-shimmer italic font-serif font-light text-transparent bg-clip-text">Digital</span> <br />
           LEGACIES.
         </h1>
 
-        <p className="hero-sub text-lg md:text-xl text-muted max-w-2xl mx-auto font-light leading-relaxed mb-12">
-          An independent design & development studio focused on creating immersive
-          digital experiences that blend technical excellence with cinematic aesthetics.
+        <p className="hero-sub text-base sm:text-lg md:text-xl text-white max-w-md md:max-w-2xl mx-auto font-normal leading-relaxed mb-8 md:mb-12 drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
+          An independent studio building fast, striking websites for brands
+          that want to stand out.
         </p>
 
-        <div className="hero-cta flex flex-col md:flex-row items-center justify-center gap-4 mb-20">
+        <div className="hero-cta flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4 mb-12 md:mb-20">
           <a href="#contact">
             <ShimmerButton
               shimmerColor="#00F0FF"
@@ -175,20 +125,28 @@ export default function Hero() {
             Explore Projects
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-accent" />
           </MagneticButton>
+          <Link
+            to="/free-audit"
+            className="group px-8 py-4 border border-[#00F0FF]/30 rounded-full font-medium text-[#00F0FF] hover:bg-[#00F0FF]/10 transition-all flex items-center gap-2 text-sm focus-visible:ring-2 focus-visible:ring-accent"
+            style={{ display: 'inline-flex' }}
+          >
+            <Zap className="w-4 h-4" />
+            Free Site Audit
+          </Link>
         </div>
 
-        {/* Stats row */}
-        <div className="hero-stats grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+        {/* Stats row, compact 3-across on mobile, roomier on desktop */}
+        <div className="hero-stats grid grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.5)] max-w-md md:max-w-none mx-auto">
           {STATS.map(({ value, label }) => (
-            <div key={label} className="bg-[#0A0A0A]/80 backdrop-blur-sm px-6 py-5 flex flex-col items-center gap-1 hover:bg-[#0A0A0A] transition-colors">
-              <span className="text-2xl font-display font-bold tracking-tight text-white">{value}</span>
-              <span className="text-xs text-muted font-light uppercase tracking-widest">{label}</span>
+            <div key={label} className="bg-[#0A0A0A]/85 backdrop-blur-sm px-2 py-4 md:px-6 md:py-5 flex flex-col items-center gap-1 hover:bg-[#0A0A0A] transition-colors">
+              <span className="text-lg md:text-2xl font-display font-bold tracking-tight text-white">{value}</span>
+              <span className="text-[9px] md:text-xs text-white/50 font-light uppercase tracking-wider md:tracking-widest text-center leading-tight">{label}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-muted pointer-events-none">
+      <div className="hidden md:block absolute bottom-12 left-1/2 -translate-x-1/2 text-muted pointer-events-none">
         <div className="scroll-caret w-px h-12 bg-gradient-to-b from-accent to-transparent shadow-[0_0_10px_rgba(0,240,255,0.5)]" />
       </div>
     </section>

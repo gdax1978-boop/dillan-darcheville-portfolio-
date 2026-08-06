@@ -3,49 +3,18 @@ import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useSEO } from '../lib/useSEO';
+import { POSTS as ALL_POSTS } from '../data/posts';
 
-const POSTS = [
-  {
-    id: 1,
-    title: 'The Future of Glassmorphism in UI Design',
-    date: 'Apr 24, 2026',
-    category: 'Design Trends',
-    readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?fm=webp&auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: 2,
-    title: 'Engineering Flawless Micro-Interactions with Framer Motion',
-    date: 'Apr 10, 2026',
-    category: 'Development',
-    readTime: '8 min read',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?fm=webp&auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: 3,
-    title: 'Why Typography is the Backbone of Minimalist Portfolios',
-    date: 'Mar 28, 2026',
-    category: 'Typography',
-    readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?fm=webp&auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: 4,
-    title: 'Building Performant WebGL Experiences in React',
-    date: 'Mar 15, 2026',
-    category: 'Creative Coding',
-    readTime: '10 min read',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fm=webp&auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: 5,
-    title: 'The Psychology of Color in Luxury Branding',
-    date: 'Feb 20, 2026',
-    category: 'Art Direction',
-    readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?fm=webp&auto=format&fit=crop&q=80&w=800',
-  }
-];
+// Card data derived from the canonical post list so titles, dates, and URLs
+// can never drift from src/data/posts.ts.
+const POSTS = Object.values(ALL_POSTS).map((p) => ({
+  slug: p.slug,
+  title: p.title,
+  date: p.date,
+  category: p.category,
+  readTime: p.readTime,
+  image: p.image.replace('w=2000', 'w=800'),
+}));
 
 export default function BlogIndex() {
   const schemas = [
@@ -61,7 +30,7 @@ export default function BlogIndex() {
       '@context': 'https://schema.org',
       '@type': 'Blog',
       '@id': 'https://www.canvexstudio.com/blog',
-      name: 'The Journal — Canvex Studio',
+      name: 'The Journal, Canvex Studio',
       description: 'Design and development insights by Dillan Darcheville. Topics include UI design, web engineering, typography, motion design, and creative direction.',
       url: 'https://www.canvexstudio.com/blog',
       publisher: {
@@ -80,7 +49,7 @@ export default function BlogIndex() {
       blogPost: POSTS.map(p => ({
         '@type': 'BlogPosting',
         headline: p.title,
-        url: `https://www.canvexstudio.com/blog/${p.id}`,
+        url: `https://www.canvexstudio.com/blog/${p.slug}`,
         image: p.image,
         articleSection: p.category,
         timeRequired: p.readTime,
@@ -90,7 +59,7 @@ export default function BlogIndex() {
   ];
 
   useSEO(
-    'The Journal | Canvex Studio — Design & Development Insights',
+    'The Journal | Canvex Studio: Design & Development Insights',
     'Web design and development insights by Dillan Darcheville of Canvex Studio, New York. Deep dives on UI design, React engineering, and creative direction.',
     '/blog',
     schemas
@@ -138,14 +107,14 @@ export default function BlogIndex() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {POSTS.map((post, index) => (
             <motion.div
-              key={post.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              key={post.slug}
+              initial={{ y: 20 }}
+              whileInView={{ y: 0 }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ delay: index * 0.1 }}
               className="group block cursor-pointer rounded-2xl overflow-hidden border border-white/10 hover:border-[#00F0FF]/50 transition-all duration-300 bg-white/[0.02]"
             >
-              <Link to={`/blog/${post.id}`}>
+              <Link to={`/blog/${post.slug}`}>
                 <div className="h-48 overflow-hidden">
                   <img
                     src={post.image}

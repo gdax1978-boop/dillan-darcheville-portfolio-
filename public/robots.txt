@@ -1,8 +1,15 @@
 User-agent: *
 Allow: /
 
+# Search engine crawler (explicit)
+User-agent: Googlebot
+Allow: /
+
 # AI crawlers — allow indexing for visibility in AI search systems
 User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
@@ -14,7 +21,13 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
 Allow: /
 
 User-agent: Anthropic-AI

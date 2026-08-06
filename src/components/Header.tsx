@@ -100,8 +100,26 @@ export default function Header() {
           <div className={`glass-dark px-6 py-3 rounded-full flex items-center gap-4 transition-all duration-500 ${
             scrolled ? 'shadow-[0_0_40px_rgba(0,240,255,0.1)]' : 'bg-transparent border-transparent'
           }`}>
-            <Link to="/" className="text-xl font-display font-semibold tracking-tight uppercase">
-              DILLAN DARCHEVILLE
+            <Link
+              to="/"
+              className="flex items-center gap-4 group cursor-pointer"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'auto' });
+                if (lenis) {
+                  lenis.scrollTo(0, { immediate: true });
+                }
+              }}
+            >
+              <div className="relative h-12 w-12 md:h-16 md:w-16 flex-shrink-0">
+                <img
+                  src="/canvex-logo.png"
+                  alt="CANVEX Studio"
+                  className="h-full w-full object-contain cursor-pointer"
+                  style={{
+                    filter: 'drop-shadow(0 0 16px rgba(0, 240, 255, 1)) brightness(1.5) contrast(1.8)',
+                  }}
+                />
+              </div>
             </Link>
             <div className="hidden md:block w-px h-4 bg-accent/10" />
             <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-6">

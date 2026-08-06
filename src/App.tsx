@@ -7,6 +7,9 @@ import Home from './pages/Home';
 const CaseStudy     = lazy(() => import('./pages/CaseStudy'));
 const BlogPost      = lazy(() => import('./pages/BlogPost'));
 const BlogIndex     = lazy(() => import('./pages/BlogIndex'));
+const FreeAudit       = lazy(() => import('./pages/FreeAudit'));
+const TermsOfService  = lazy(() => import('./pages/TermsOfService'));
+const PrivacyPolicy   = lazy(() => import('./pages/PrivacyPolicy'));
 const CookieConsent = lazy(() => import('./components/CookieConsent'));
 const AIChatWidget  = lazy(() => import('./components/AIChatWidget'));
 const ScrollProgress = lazy(() => import('./components/ScrollProgress'));
@@ -32,6 +35,9 @@ export default function App() {
               <Route path="/case-study/:id" element={<CaseStudy />} />
               <Route path="/blog" element={<BlogIndex />} />
               <Route path="/blog/:id" element={<BlogPost />} />
+              <Route path="/free-audit" element={<FreeAudit />} />
+              <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
             </Routes>
           </Suspense>
         </main>

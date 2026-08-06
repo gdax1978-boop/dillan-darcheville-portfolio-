@@ -8,6 +8,18 @@ export default function Footer() {
   return (
     <footer role="contentinfo" aria-label="Site footer" className="bg-[#030303] py-20 px-6 md:px-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
+        <div className="flex items-center gap-6 mb-16">
+          <div className="relative h-20 w-20 md:h-32 md:w-32 flex-shrink-0">
+            <img
+              src="/canvex-logo.png"
+              alt="CANVEX Studio"
+              className="h-full w-full object-contain"
+              style={{
+                filter: 'drop-shadow(0 0 20px rgba(0, 240, 255, 1)) brightness(1.5) contrast(1.8)',
+              }}
+            />
+          </div>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-end border-b border-white/10 pb-20 mb-12">
           <div>
             <h2 className="text-5xl md:text-8xl font-display font-bold tracking-tighter mb-12 uppercase">
@@ -39,10 +51,10 @@ export default function Footer() {
               <div className="space-y-4">
                 <h3 className="font-bold uppercase tracking-widest text-[10px] text-white/50">Work</h3>
                 <div className="flex flex-col gap-2 text-white/80 text-xs font-light">
-                  <Link to="/case-study/1" className="hover:text-[#00F0FF] transition-colors">Lumina Real Estate</Link>
-                  <Link to="/case-study/2" className="hover:text-[#00F0FF] transition-colors">Volt Fitness</Link>
-                  <Link to="/case-study/3" className="hover:text-[#00F0FF] transition-colors">Osteria Roasters</Link>
-                  <Link to="/case-study/4" className="hover:text-[#00F0FF] transition-colors">Game Changers Gear</Link>
+                  <Link to="/case-study/lumina-real-estate" className="hover:text-[#00F0FF] transition-colors">Lumina Real Estate</Link>
+                  <Link to="/case-study/volt-fitness" className="hover:text-[#00F0FF] transition-colors">Volt Fitness</Link>
+                  <Link to="/case-study/osteria-roasters" className="hover:text-[#00F0FF] transition-colors">Osteria Roasters</Link>
+                  <Link to="/case-study/game-changers-gear" className="hover:text-[#00F0FF] transition-colors">Game Changers Gear</Link>
                 </div>
               </div>
             </nav>
@@ -57,9 +69,9 @@ export default function Footer() {
               <span itemProp="addressLocality">New York</span>, <span itemProp="addressRegion">NY</span> · <a href="mailto:canvexstudio@gmail.com" itemProp="email" className="hover:text-[#00F0FF] transition-colors">canvexstudio@gmail.com</a>
             </address>
           </div>
-          <div className="flex gap-8 italic">
-            <span>Built with Intention</span>
-            <span>2026 GOLD STANDARD</span>
+          <div className="flex gap-6 items-center">
+            <Link to="/privacy" className="hover:text-[#00F0FF] transition-colors normal-case tracking-normal not-italic font-light">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-[#00F0FF] transition-colors normal-case tracking-normal not-italic font-light">Terms of Service</Link>
           </div>
         </div>
       </div>

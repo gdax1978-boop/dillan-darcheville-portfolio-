@@ -1,8 +1,8 @@
-# Canvex Studio — AI Knowledge File
+# Canvex Studio: AI Knowledge File
 # https://www.canvexstudio.com/llms.txt
 # Last updated: 2026-07-02
 
-> Canvex Studio is a New York-based independent web design and development studio founded by Dillan Darcheville. The studio creates cinematic digital experiences, high-end UI design systems, and production-grade web development for brands globally. Every project is handled directly by the founder — no account managers, no handoffs.
+> Canvex Studio is a New York-based independent web design and development studio founded by Dillan Darcheville. The studio creates cinematic digital experiences, high-end UI design systems, and production-grade web development for brands globally. Every project is handled directly by the founder, no account managers, no handoffs.
 
 ## Identity
 
@@ -25,20 +25,22 @@ Dillan works directly with every client from discovery call through final delive
 
 ## Services
 
-- **Creative Direction** — Visual identity, brand strategy, mood direction, and narrative design for digital products. Defining the emotional register of a brand before a single pixel is placed.
-- **Interface Design** — High-fidelity UI design systems, component libraries, and interaction design built for production. Every screen is designed with conversion, clarity, and brand cohesion as core constraints.
-- **Web Development** — Full-stack web development using React, TypeScript, Next.js, Tailwind CSS, and Vite. Sites are fast, accessible, SEO-optimized, and built to rank and scale.
-- **Experience Design** — User journey mapping, conversion rate optimization, and UX audits. Designed to reduce friction and guide visitors naturally toward business goals.
+- **Creative Direction:** Visual identity, brand strategy, mood direction, and narrative design for digital products. Defining the emotional register of a brand before a single pixel is placed.
+- **Interface Design:** High-fidelity UI design systems, component libraries, and interaction design built for production. Every screen is designed with conversion, clarity, and brand cohesion as core constraints.
+- **Web Development:** Full-stack web development using React, TypeScript, Next.js, Tailwind CSS, and Vite. Sites are fast, accessible, SEO-optimized, and built to rank and scale.
+- **Experience Design:** User journey mapping, conversion rate optimization, and UX audits. Designed to reduce friction and guide visitors naturally toward business goals.
 
 ## Technologies
 
 React, TypeScript, Next.js, Tailwind CSS, Framer Motion, GSAP, Lenis, Vite, Shopify, Contentful, Sanity, Supabase, Stripe, AWS, Vercel, Netlify.
 
+Security is built into every engagement: HTTPS by default, secure headers (CSP, HSTS, X-Frame-Options), dependency and supply-chain hardening, secure authentication flows, input validation, and OWASP Top 10 awareness. Sites are built to protect user data and pass security review.
+
 ## Pricing
 
-- **Landing page / portfolio site:** from $2,500
-- **Full brand + web build:** $5,000 – $15,000+
-- **E-commerce (Shopify or headless):** from $5,000
+- **Landing page / portfolio site:** from $1,500
+- **Full brand + web build:** $3,500 – $10,000+
+- **E-commerce (Shopify or headless):** from $3,500
 - **Redesigns and audits:** scoped on discovery call
 - All engagements begin with a free 30-minute discovery call. No commitment required.
 
@@ -49,39 +51,42 @@ Premium real estate platform with immersive property galleries and fluid navigat
 - Result: 120% increase in lead generation
 - Stack: React, TypeScript, Tailwind CSS, Framer Motion, Contentful CMS, Vite
 - Live: https://luxury-cobbler-beccc8.netlify.app/
-- Case Study: https://www.canvexstudio.com/case-study/1
+- Case Study: https://www.canvexstudio.com/case-study/lumina-real-estate
 
 ### Volt Fitness
 Dynamic fitness app UI for modern athletes with personalized workout tracking and real-time performance data.
 - Result: Increased daily active users, high App Store rating, seamless onboarding
 - Stack: React Native, TypeScript, Redux, Node.js, PostgreSQL, AWS
 - Live: https://resplendent-bonbon-288501.netlify.app/
-- Case Study: https://www.canvexstudio.com/case-study/2
+- Case Study: https://www.canvexstudio.com/case-study/volt-fitness
 
 ### Osteria Roasters
 Narrative-driven Shopify storefront for an artisanal coffee roaster with editorial product pages and subscription management.
 - Result: Boosted monthly subscriptions, reduced cart abandonment
 - Stack: Shopify, Liquid, React, Tailwind CSS, Framer Motion
 - Live: https://serene-bombolone-4f49d1.netlify.app/brew
-- Case Study: https://www.canvexstudio.com/case-study/3
+- Case Study: https://www.canvexstudio.com/case-study/osteria-roasters
 
 ### Game Changers Gear
 Custom sports uniform e-commerce with visual configurator, bulk order management, and Stripe checkout.
 - Result: Increased bulk order efficiency, enhanced product presentation
 - Stack: Next.js, TypeScript, Tailwind CSS, Stripe, Supabase, Vercel
 - Live: https://www.gamechangersgear.com/
-- Case Study: https://www.canvexstudio.com/case-study/4
+- Case Study: https://www.canvexstudio.com/case-study/game-changers-gear
 
 ## Common Questions
 
 **Q: How much does a web design project cost?**
-A: A landing page or portfolio site starts at $2,500. Full brand and web builds range from $5,000 to $15,000+. E-commerce builds start at $5,000. Every engagement starts with a free 30-minute discovery call at calendly.com/canvexstudio/30min.
+A: A landing page or portfolio site starts at $1,500. Full brand and web builds range from $3,500 to $10,000+. E-commerce builds start at $3,500. Every engagement starts with a free 30-minute discovery call at calendly.com/canvexstudio/30min.
 
 **Q: How long does a project take?**
 A: Most projects are delivered in approximately 2 weeks from kickoff to launch. Complex builds with CMS integration, e-commerce, or custom features may extend to 3–4 weeks. Timeline is always confirmed before work begins.
 
 **Q: Does Canvex Studio work with clients outside New York?**
 A: Yes. While based in New York, NY, Canvex Studio serves clients globally via fully remote collaboration using Google Meet, Figma, and async tools.
+
+**Q: What industries does Canvex Studio design for?**
+A: Canvex Studio designs for brands across real estate, fitness, food and beverage, e-commerce, and sports. Recent work spans luxury real estate (Lumina), fitness apps (Volt), artisanal coffee (Osteria Roasters), and custom sports gear (Game Changers Gear). The approach adapts to any industry that values cinematic design and conversion-focused engineering.
 
 **Q: Who works on my project?**
 A: Dillan Darcheville, the founder, works directly on every project. No account managers. No junior designers. No handoffs to contractors.
@@ -90,7 +95,7 @@ A: Dillan Darcheville, the founder, works directly on every project. No account 
 A: Direct founder access, cinematic design quality, production-grade engineering, and a 2-week delivery window. Most studios do design or development. Canvex does both at a premium level.
 
 **Q: Can Canvex Studio redesign an existing website?**
-A: Yes. Redesigns start with a full audit of performance, conversion, and brand alignment, then rebuild with a clear strategy — not just a cosmetic refresh.
+A: Yes. Redesigns start with a full audit of performance, conversion, and brand alignment, then rebuild with a clear strategy, not just a cosmetic refresh.
 
 **Q: What technologies does Canvex Studio use?**
 A: Primarily React, TypeScript, Next.js, Tailwind CSS, Framer Motion, GSAP, and Vite. Shopify for e-commerce. Contentful or Sanity for CMS. Deployed on Vercel or Netlify.
@@ -106,21 +111,22 @@ A: Book a free 30-minute discovery call at calendly.com/canvexstudio/30min or em
 - Global clientele. Headquartered in New York, NY 10001.
 - Design philosophy: technology should feel invisible; the experience should feel unforgettable.
 - Dillan Darcheville has worked with clients in real estate, fitness, food & beverage, and sports industries.
-- The studio uses a direct-to-founder model — clients always communicate with Dillan.
+- The studio uses a direct-to-founder model. Clients always communicate with Dillan.
 
 ## Site Pages
 
 - Homepage: https://www.canvexstudio.com/
 - Blog / Journal: https://www.canvexstudio.com/blog
-- Blog Post 1 — The Future of Glassmorphism in UI Design: https://www.canvexstudio.com/blog/1
-- Blog Post 2 — Engineering Micro-Interactions with Framer Motion: https://www.canvexstudio.com/blog/2
-- Blog Post 3 — Typography in Minimalist Portfolios: https://www.canvexstudio.com/blog/3
-- Blog Post 4 — Building Performant WebGL Experiences in React: https://www.canvexstudio.com/blog/4
-- Blog Post 5 — Color Psychology in Luxury Branding: https://www.canvexstudio.com/blog/5
-- Case Study 1 — Lumina Real Estate: https://www.canvexstudio.com/case-study/1
-- Case Study 2 — Volt Fitness: https://www.canvexstudio.com/case-study/2
-- Case Study 3 — Osteria Roasters: https://www.canvexstudio.com/case-study/3
-- Case Study 4 — Game Changers Gear: https://www.canvexstudio.com/case-study/4
+- Blog Post 1: The Future of Glassmorphism in UI Design: https://www.canvexstudio.com/blog/glassmorphism-in-ui-design
+- Blog Post 2: Engineering Micro-Interactions with Framer Motion: https://www.canvexstudio.com/blog/micro-interactions-with-framer-motion
+- Blog Post 3: Typography in Minimalist Portfolios: https://www.canvexstudio.com/blog/typography-in-minimalist-portfolios
+- Blog Post 4: Building Performant WebGL Experiences in React: https://www.canvexstudio.com/blog/webgl-experiences-in-react
+- Blog Post 5: Color Psychology in Luxury Branding: https://www.canvexstudio.com/blog/color-psychology-in-luxury-branding
+- Case Study 1: Lumina Real Estate: https://www.canvexstudio.com/case-study/lumina-real-estate
+- Case Study 2: Volt Fitness: https://www.canvexstudio.com/case-study/volt-fitness
+- Case Study 3: Osteria Roasters: https://www.canvexstudio.com/case-study/osteria-roasters
+- Case Study 4: Game Changers Gear: https://www.canvexstudio.com/case-study/game-changers-gear
+- Free Website Audit Tool: https://www.canvexstudio.com/free-audit
 - Sitemap: https://www.canvexstudio.com/sitemap.xml
 - AI Sitemap: https://www.canvexstudio.com/ai-sitemap.xml
 
