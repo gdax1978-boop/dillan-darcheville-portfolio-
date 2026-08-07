@@ -117,20 +117,20 @@ export default function Hero() {
               borderRadius="100px"
               className="px-8 py-4 font-medium text-white border-[#00F0FF]/30 hover:shadow-[0_0_40px_rgba(0,240,255,0.4)] transition-shadow"
             >
-              <CalendarDays className="w-4 h-4 mr-2 inline" />
+              <CalendarDays className="w-5 h-5 mr-2 inline drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]" />
               Book a Free Call
             </ShimmerButton>
           </a>
           <MagneticButton href="#work">
             Explore Projects
-            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-accent" />
+            <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-accent drop-shadow-[0_0_8px_rgba(0,240,255,0.7)]" />
           </MagneticButton>
           <Link
             to="/free-audit"
             className="group px-8 py-4 border border-[#00F0FF]/30 rounded-full font-medium text-[#00F0FF] hover:bg-[#00F0FF]/10 transition-all flex items-center gap-2 text-sm focus-visible:ring-2 focus-visible:ring-accent"
             style={{ display: 'inline-flex' }}
           >
-            <Zap className="w-4 h-4" />
+            <Zap className="w-5 h-5 fill-[#00F0FF] drop-shadow-[0_0_10px_rgba(0,240,255,0.9)] group-hover:scale-110 transition-transform" />
             Free Site Audit
           </Link>
         </div>
