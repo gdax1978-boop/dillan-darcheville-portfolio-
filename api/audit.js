@@ -4,6 +4,8 @@
 // Requires a server env var (NOT prefixed with VITE_, so it stays private):
 //   PAGESPEED_API_KEY = <your free Google PageSpeed Insights API key>
 
+import { scanSecurity } from './_security.js';
+
 export const config = { maxDuration: 60 };
 
 const ALLOWED_CATEGORIES = ['PERFORMANCE', 'SEO', 'ACCESSIBILITY', 'BEST_PRACTICES'];
@@ -21,10 +23,6 @@ export default async function handler(req, res) {
   const key = process.env.PAGESPEED_API_KEY
     || process.env.VITE_PAGESPEED_API_KEY
     || process.env.PAGESPEED_API_KE; // tolerate the truncated name saved in Vercel
-  if (!key) {
-    // No key configured — tell the client so it can fall back to preliminary mode.
-    return res.status(503).json({ error: 'measurement_unavailable' });
-  }
 
   const rawUrl = typeof req.query.url === 'string' ? req.query.url.trim() : '';
   if (!rawUrl) return res.status(400).json({ error: 'Missing url' });
@@ -51,70 +49,51 @@ export default async function handler(req, res) {
 
   const strategy = req.query.strategy === 'desktop' ? 'desktop' : 'mobile';
 
-  const params = new URLSearchParams({ url: target.toString(), strategy, key });
-  ALLOWED_CATEGORIES.forEach(c => params.append('category', c));
-  const endpoint = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${params.toString()}`;
-
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 55000);
 
-  try {
-    // Run the Lighthouse scan and a real security-header check in PARALLEL, so
-    // the accurate security data adds no extra time on top of the (slow) PSI run.
-    const [psiRes, securityHeaders] = await Promise.all([
-      fetch(endpoint, { signal: controller.signal }),
-      readSecurityHeaders(target),
-    ]);
-    const json = await psiRes.json();
+  // The security scan needs no API key and no third party, so it runs regardless
+  // and in parallel with the (slow) Lighthouse call. If PageSpeed is missing a
+  // key, rate-limited, or times out, we still return a real measured report
+  // rather than dead-ending the visitor.
+  const securityPromise = scanSecurity(target).catch(() => null);
 
-    if (!psiRes.ok || !json.lighthouseResult) {
-      return res.status(502).json({ error: 'psi_failed', status: psiRes.status });
+  async function runPageSpeed() {
+    if (!key) return { ok: false, reason: 'no_api_key' };
+    const params = new URLSearchParams({ url: target.toString(), strategy, key });
+    ALLOWED_CATEGORIES.forEach(c => params.append('category', c));
+    const endpoint = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${params.toString()}`;
+    try {
+      const psiRes = await fetch(endpoint, { signal: controller.signal });
+      const json = await psiRes.json();
+      if (!psiRes.ok || !json.lighthouseResult) {
+        return { ok: false, reason: 'psi_failed', status: psiRes.status };
+      }
+      return { ok: true, json };
+    } catch (err) {
+      return { ok: false, reason: err && err.name === 'AbortError' ? 'timeout' : 'fetch_failed' };
+    }
+  }
+
+  try {
+    const [psi, security] = await Promise.all([runPageSpeed(), securityPromise]);
+
+    if (!psi.ok && !security) {
+      // Nothing could be measured at all — the site is genuinely unreachable.
+      return res.status(502).json({ error: psi.reason });
     }
 
-    // Edge-cache identical scans: Lighthouse data is stable for the short term, so
-    // a repeat scan of the same URL returns near-instantly instead of re-running.
+    // Edge-cache identical scans: this data is stable for the short term, so a
+    // repeat scan of the same URL returns near-instantly instead of re-running.
     res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=21600');
     return res.status(200).json({
-      lighthouseResult: json.lighthouseResult,
-      loadingExperience: json.loadingExperience || null,
-      originLoadingExperience: json.originLoadingExperience || null,
-      securityHeaders, // real HTTP security headers, measured directly
+      lighthouseResult: psi.ok ? psi.json.lighthouseResult : null,
+      loadingExperience: psi.ok ? (psi.json.loadingExperience || null) : null,
+      originLoadingExperience: psi.ok ? (psi.json.originLoadingExperience || null) : null,
+      security, // Observatory-calibrated security scan, measured directly
+      psiUnavailable: psi.ok ? undefined : psi.reason,
     });
-  } catch (err) {
-    const aborted = err && err.name === 'AbortError';
-    return res.status(aborted ? 504 : 502).json({ error: aborted ? 'timeout' : 'fetch_failed' });
   } finally {
     clearTimeout(timeout);
-  }
-}
-
-// Fetch the target and read its real security headers. Fast (~one request) and
-// far more accurate than Lighthouse's "informative" security audits, which report
-// a pass even when a header is absent. Returns null if the site can't be reached.
-async function readSecurityHeaders(target) {
-  const ac = new AbortController();
-  const t = setTimeout(() => ac.abort(), 8000);
-  try {
-    const r = await fetch(target.toString(), {
-      method: 'GET',
-      redirect: 'follow',
-      signal: ac.signal,
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; CanvexAudit/1.0)' },
-    });
-    const h = r.headers;
-    const csp = h.get('content-security-policy') || h.get('content-security-policy-report-only') || '';
-    return {
-      https: r.url.startsWith('https:') || target.protocol === 'https:',
-      hsts: !!h.get('strict-transport-security'),
-      csp: !!csp,
-      frameProtection: !!h.get('x-frame-options') || /frame-ancestors/i.test(csp),
-      noSniff: (h.get('x-content-type-options') || '').toLowerCase().includes('nosniff'),
-      referrerPolicy: !!h.get('referrer-policy'),
-      permissionsPolicy: !!h.get('permissions-policy'),
-    };
-  } catch {
-    return null;
-  } finally {
-    clearTimeout(t);
   }
 }

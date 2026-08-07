@@ -35,6 +35,24 @@ interface Opportunity {
   savingsLabel: string;
 }
 
+type Severity = 'critical' | 'high' | 'medium' | 'low' | 'pass';
+
+interface SecurityFinding {
+  id: string;
+  severity: Severity;
+  modifier: number;
+  title: string;
+  detail: string;
+}
+
+interface SecurityScan {
+  score: number;
+  rawScore: number;
+  grade: string;
+  findings: SecurityFinding[];
+  scannedUrl: string;
+}
+
 interface AuditResult {
   url: string;
   overall: number;
@@ -50,6 +68,9 @@ interface AuditResult {
   measured: boolean;
   fieldData: boolean;
   screenshot?: string;
+  security?: SecurityScan | null;
+  /** Set when Lighthouse could not run, so the report is security-only. */
+  psiUnavailable?: string;
 }
 
 /* ─────────────────────────────  helpers  ───────────────────────────── */
@@ -64,6 +85,22 @@ const VITAL_COLORS: Record<VitalRating, string> = {
   poor: '#FF4444',
   'needs-improvement': '#FFB800',
   good: '#00F0FF',
+};
+
+const SEVERITY_COLORS: Record<Severity, string> = {
+  critical: '#FF4444',
+  high: '#FF8A3D',
+  medium: '#FFB800',
+  low: '#8A93A6',
+  pass: '#00F0FF',
+};
+
+const SEVERITY_LABELS: Record<Severity, string> = {
+  critical: 'Critical',
+  high: 'High',
+  medium: 'Medium',
+  low: 'Advisory',
+  pass: 'Pass',
 };
 
 const RISK_COLORS: Record<'Low' | 'Moderate' | 'High', string> = {
@@ -181,24 +218,12 @@ function categoryAudits(lhr: LHResult, categoryId: string, wantPass: boolean, li
   return out.slice(0, limit).map(o => o.title);
 }
 
-// Real HTTP security headers measured server-side (accurate, not Lighthouse's
-// "informative" audits which report a pass even when a header is missing).
-interface SecurityHeaders {
-  https: boolean;
-  hsts: boolean;
-  csp: boolean;
-  frameProtection: boolean;
-  noSniff: boolean;
-  referrerPolicy: boolean;
-  permissionsPolicy: boolean;
-}
-
-// Weighted Security score from the actual headers the site sends. Weights sum to 100,
-// so the score is exact: a site with only HTTPS lands ~35, a fully hardened site 100.
-function securityCategory(sh: SecurityHeaders | null | undefined, lhr: LHResult): CategoryScore {
-  if (!sh) {
-    // Couldn't read headers directly: fall back to Lighthouse's HTTPS check only, conservatively.
-    const https = lhr.audits['is-on-https']?.score === 1;
+// Security scan measured server-side and scored against the Mozilla HTTP
+// Observatory model, so the grade is comparable to the tool the industry cites.
+function securityCategory(sec: SecurityScan | null | undefined, lhr?: LHResult): CategoryScore {
+  if (!sec) {
+    // Scan couldn't reach the site: fall back to Lighthouse's HTTPS check only, conservatively.
+    const https = lhr?.audits['is-on-https']?.score === 1;
     const score = https ? 55 : 15;
     return {
       name: 'Security', score, level: getLevel(score), icon: Shield, measured: true,
@@ -206,18 +231,45 @@ function securityCategory(sh: SecurityHeaders | null | undefined, lhr: LHResult)
       wins: https ? ['Served over HTTPS'] : [],
     };
   }
-  const controls = [
-    { ok: sh.https, w: 35, win: 'Encrypted over HTTPS', fail: 'Not served fully over HTTPS' },
-    { ok: sh.csp, w: 20, win: 'Content Security Policy present', fail: 'No Content Security Policy (XSS exposure)' },
-    { ok: sh.hsts, w: 15, win: 'HSTS enforces secure connections', fail: 'Missing HSTS header' },
-    { ok: sh.frameProtection, w: 12, win: 'Clickjacking protection in place', fail: 'No clickjacking protection (X-Frame-Options / frame-ancestors)' },
-    { ok: sh.noSniff, w: 10, win: 'MIME-sniffing disabled', fail: 'Missing X-Content-Type-Options: nosniff' },
-    { ok: sh.referrerPolicy, w: 8, win: 'Referrer-Policy set', fail: 'No Referrer-Policy header' },
-  ];
-  const score = controls.filter(c => c.ok).reduce((s, c) => s + c.w, 0);
-  const issues = controls.filter(c => !c.ok).map(c => c.fail).slice(0, 2);
-  const wins = controls.filter(c => c.ok).map(c => c.win).slice(0, 1);
-  return { name: 'Security', score, level: getLevel(score), icon: Shield, measured: true, issues, wins };
+  return {
+    name: 'Security', score: sec.score, level: getLevel(sec.score), icon: Shield, measured: true,
+    issues: sec.findings.filter(f => f.severity !== 'pass').slice(0, 2).map(f => f.title),
+    wins: sec.findings.filter(f => f.severity === 'pass').slice(0, 1).map(f => f.title),
+  };
+}
+
+/**
+ * Lighthouse couldn't run, but the security scan did. Everything below is still
+ * genuinely measured, so this is a real report, just a narrower one — no
+ * estimated performance numbers are invented to fill the gap.
+ */
+function securityOnlyResult(sec: SecurityScan, reason?: string): Partial<AuditResult> & { lcpNumeric: number; perf: number } {
+  const serious = sec.findings.filter(f => f.severity === 'critical' || f.severity === 'high');
+  const risk: AuditResult['revenueRisk'] = serious.length
+    ? {
+        level: serious.some(f => f.severity === 'critical') ? 'High' : 'Moderate',
+        headline: 'Security gaps are exposing your visitors',
+        detail: `Your site scores ${sec.grade} (${sec.score}/100) on the Mozilla Observatory scale, with ${serious.length} serious ${serious.length === 1 ? 'issue' : 'issues'} open. The most urgent is: ${serious[0].title.toLowerCase()}.`,
+      }
+    : {
+        level: 'Low',
+        headline: 'Your security posture is solid',
+        detail: `Your site scores ${sec.grade} (${sec.score}/100) on the Mozilla Observatory scale with no critical or high-severity findings.`,
+      };
+
+  return {
+    overall: sec.score,
+    grade: sec.grade,
+    categories: [securityCategory(sec)],
+    vitals: [],
+    opportunities: [],
+    revenueRisk: risk,
+    fieldData: false,
+    security: sec,
+    psiUnavailable: reason || 'unavailable',
+    lcpNumeric: 0,
+    perf: 0,
+  };
 }
 
 async function fetchPageSpeed(url: string): Promise<Partial<AuditResult> & { lcpNumeric: number; perf: number }> {
@@ -227,7 +279,7 @@ async function fetchPageSpeed(url: string): Promise<Partial<AuditResult> & { lcp
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 60000);
-  let json: { lighthouseResult?: LHResult; loadingExperience?: LoadingExperience | null; originLoadingExperience?: LoadingExperience | null; securityHeaders?: SecurityHeaders | null };
+  let json: { lighthouseResult?: LHResult | null; loadingExperience?: LoadingExperience | null; originLoadingExperience?: LoadingExperience | null; security?: SecurityScan | null; psiUnavailable?: string };
   try {
     const res = await fetch(endpoint, { signal: controller.signal });
     if (!res.ok) throw new Error(`audit ${res.status}`);
@@ -237,7 +289,12 @@ async function fetchPageSpeed(url: string): Promise<Partial<AuditResult> & { lcp
   }
 
   const lhr = json.lighthouseResult;
-  if (!lhr) throw new Error('No Lighthouse result');
+  // Lighthouse unavailable (no key, quota, timeout). The security scan needs no
+  // third party, so deliver that real measured report instead of dead-ending.
+  if (!lhr) {
+    if (!json.security) throw new Error('No measurement available');
+    return securityOnlyResult(json.security, json.psiUnavailable);
+  }
 
   const catScore = (id: string) => Math.round((lhr.categories[id]?.score ?? 0) * 100);
   const perf = catScore('performance');
@@ -254,7 +311,7 @@ async function fetchPageSpeed(url: string): Promise<Partial<AuditResult> & { lcp
       issues: categoryAudits(lhr, 'accessibility', false, 2), wins: categoryAudits(lhr, 'accessibility', true, 1) },
     { name: 'Best Practices', score: bp, level: getLevel(bp), icon: Gauge, measured: true,
       issues: categoryAudits(lhr, 'best-practices', false, 2), wins: categoryAudits(lhr, 'best-practices', true, 1) },
-    securityCategory(json.securityHeaders, lhr),
+    securityCategory(json.security, lhr),
   ];
   const sec = categories[4].score;
 
@@ -296,7 +353,7 @@ async function fetchPageSpeed(url: string): Promise<Partial<AuditResult> & { lcp
 
   // Revenue risk grounded in Google's published bounce research. Uses real-user
   // LCP when available (more accurate than a single lab run).
-  const src = fieldData ? 'Real visitors experience' : 'Your measured';
+  const src = fieldData ? 'Real visitors experience' : 'Your site measured';
   let risk: AuditResult['revenueRisk'];
   if (perf >= 85 && lcpForRisk <= 2500) {
     risk = { level: 'Low', headline: 'Speed is protecting your conversions',
@@ -311,7 +368,7 @@ async function fetchPageSpeed(url: string): Promise<Partial<AuditResult> & { lcp
 
   const screenshot = A['final-screenshot']?.details?.data;
 
-  return { overall, grade: getGrade(overall), categories, vitals, opportunities, revenueRisk: risk, screenshot, fieldData, lcpNumeric, perf };
+  return { overall, grade: getGrade(overall), categories, vitals, opportunities, revenueRisk: risk, screenshot, fieldData, security: json.security ?? null, lcpNumeric, perf };
 }
 
 /* ───────────────  AI narrative layer (interprets the REAL data)  ─────────────── */
@@ -324,13 +381,21 @@ async function fetchNarrative(
   const cats = (data.categories ?? []).map(c => `${c.name}: ${c.score}/100`).join(', ');
   const vitals = (data.vitals ?? []).map(v => `${v.label} ${v.value} (${v.rating})`).join(', ');
   const opps = (data.opportunities ?? []).map(o => `${o.title} (save ${o.savingsLabel})`).join('; ') || 'none flagged';
+  const secFindings = (data.security?.findings ?? [])
+    .filter(f => f.severity !== 'pass')
+    .slice(0, 5)
+    .map(f => `${f.severity.toUpperCase()}: ${f.title}`)
+    .join('; ') || 'none flagged';
+  const secGrade = data.security ? `${data.security.grade} (${data.security.score}/100)` : 'not measured';
 
-  const prompt = `You are the lead web strategist at Canvex Studio, New York. Below is REAL Google Lighthouse data measured live for ${url}. Interpret it for a non-technical business owner. Never invent numbers, only reference the data given.
+  const prompt = `You are the lead web strategist at Canvex Studio, New York. Below is REAL Google Lighthouse data and a real HTTP security scan measured live for ${url}. Interpret it for a non-technical business owner. Never invent numbers, only reference the data given.
 
 MEASURED (mobile):
 Scores, ${cats}
 Core Web Vitals, ${vitals}
 Top speed opportunities, ${opps}
+Security grade, ${secGrade}
+Security findings, ${secFindings}
 
 Respond ONLY as valid JSON:
 {
@@ -422,10 +487,25 @@ Be specific. Most sites score 40-70; only exceptional sites exceed 80.`;
 /* Templated narrative when no AI key is present: still fully grounded in real data */
 function templatedNarrative(data: Partial<AuditResult> & { perf: number }): { summary: string; conversion: string; topFixes: string[]; cta: string } {
   const weakest = [...(data.categories ?? [])].sort((a, b) => a.score - b.score)[0];
-  const summary = weakest
-    ? `Your biggest weak point is ${weakest.name} at ${weakest.score}/100. That's the area dragging down your visibility and the visitor experience the most.`
-    : 'Your site was measured across performance, SEO, accessibility and best practices.';
-  const fixes = (data.opportunities ?? []).slice(0, 3).map(o => `${o.title}, potential to save ${o.savingsLabel} of load time.`);
+  const serious = (data.security?.findings ?? []).filter(f => f.severity === 'critical' || f.severity === 'high');
+  let summary: string;
+  if (data.psiUnavailable) {
+    summary = serious.length
+      ? `Your site scores ${data.security?.grade} (${data.security?.score}/100) for security, with ${serious.length} serious ${serious.length === 1 ? 'gap' : 'gaps'} an attacker could use today.`
+      : `Your site scores ${data.security?.grade} (${data.security?.score}/100) for security with no serious gaps open.`;
+  } else if (weakest) {
+    summary = `Your biggest weak point is ${weakest.name} at ${weakest.score}/100. That's the area dragging down your visibility and the visitor experience the most.`;
+  } else {
+    summary = 'Your site was measured across performance, SEO, accessibility and best practices.';
+  }
+  const fixes = (data.security?.findings ?? [])
+    .filter(f => f.severity === 'critical' || f.severity === 'high')
+    .slice(0, 2)
+    .map(f => `${f.title}. ${f.detail}`);
+  for (const o of data.opportunities ?? []) {
+    if (fixes.length >= 3) break;
+    fixes.push(`${o.title}, potential to save ${o.savingsLabel} of load time.`);
+  }
   while (fixes.length < 3 && weakest) fixes.push(`Address failing ${weakest.name.toLowerCase()} checks flagged above.`);
   return {
     summary,
@@ -543,6 +623,8 @@ export default function FreeAudit() {
         opportunities: measured.opportunities!,
         revenueRisk: measured.revenueRisk!,
         screenshot: measured.screenshot,
+        security: measured.security,
+        psiUnavailable: measured.psiUnavailable,
         measured: true,
         fieldData: measured.fieldData!,
         summary: narrative.summary || templatedNarrative(measured).summary,
@@ -688,11 +770,28 @@ export default function FreeAudit() {
                 </div>
               )}
 
+              {/* Lighthouse unavailable: the security half is still fully measured */}
+              {result.measured && result.psiUnavailable && (
+                <div className="flex items-start gap-3 p-4 rounded-2xl border border-[#00F0FF]/25 bg-[#00F0FF]/5 mb-8">
+                  <Shield className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
+                  <p className="text-white/70 text-sm font-light leading-relaxed">
+                    <span className="font-medium text-white">Security report only.</span> The Google Lighthouse
+                    {result.psiUnavailable === 'timeout' ? ' scan timed out' : ' scan was unavailable'} for this run, so
+                    performance, SEO and accessibility are not scored below. Everything shown is still measured directly
+                    against your live site.
+                  </p>
+                </div>
+              )}
+
               {/* Header */}
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-14">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 text-xs text-white/40 font-medium uppercase tracking-widest mb-4">
-                    <span>{result.measured ? 'Live Lighthouse Report' : 'Preliminary Review'}</span>
+                    <span>
+                      {!result.measured ? 'Preliminary Review'
+                        : result.psiUnavailable ? 'Live Security Report'
+                        : 'Live Lighthouse Report'}
+                    </span>
                     <span>·</span>
                     <a href={result.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-[#00F0FF] transition-colors truncate max-w-[220px]">
                       {result.url.replace(/^https?:\/\//, '')} <ExternalLink className="w-3 h-3 shrink-0" />
@@ -706,7 +805,11 @@ export default function FreeAudit() {
                       <h1 className="text-3xl md:text-4xl font-display font-bold tracking-tighter uppercase leading-none">
                         Overall Grade
                       </h1>
-                      <p className="text-white/40 text-sm mt-1">Weighted across all four categories, measured on mobile.</p>
+                      <p className="text-white/40 text-sm mt-1">
+                        {result.psiUnavailable
+                          ? 'Measured security grade, Mozilla Observatory scale.'
+                          : 'Weighted across all five categories, measured on mobile.'}
+                      </p>
                     </div>
                   </div>
                   <p className="text-white/70 font-light text-lg leading-relaxed max-w-xl">{result.summary}</p>
@@ -787,6 +890,53 @@ export default function FreeAudit() {
                 </motion.div>
               )}
 
+              {/* Security report (Observatory-calibrated) */}
+              {result.security && (
+                <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
+                  className="p-8 rounded-2xl border border-white/10 bg-white/[0.02] mb-6">
+                  <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 mb-6">
+                    <div className="flex items-center gap-2">
+                      <Shield className="w-4 h-4 shrink-0 text-[#00F0FF]" />
+                      <p className="text-xs font-bold uppercase tracking-widest text-[#00F0FF] whitespace-nowrap">Security Report</p>
+                    </div>
+                    <div className="flex items-center gap-3 ml-auto">
+                      <span className="text-[10px] uppercase tracking-wider font-medium px-2 py-1 rounded-full border border-white/10 text-white/50 whitespace-nowrap">
+                        Mozilla Observatory scale
+                      </span>
+                      <span className="font-display font-bold text-3xl leading-none" style={{ color: SCORE_COLORS[getLevel(result.security.score)] }}>
+                        {result.security.grade}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    {result.security.findings.map(f => (
+                      <div key={f.id} className="flex items-start gap-3 border-b border-white/5 pb-3 last:border-0 last:pb-0">
+                        <span
+                          className="text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shrink-0 mt-0.5 w-[64px] text-center"
+                          style={{ color: SEVERITY_COLORS[f.severity], background: `${SEVERITY_COLORS[f.severity]}1A` }}
+                        >
+                          {SEVERITY_LABELS[f.severity]}
+                        </span>
+                        <div className="min-w-0">
+                          <p className="text-white/85 text-sm font-medium leading-snug">{f.title}</p>
+                          <p className="text-white/45 text-xs font-light leading-relaxed mt-1">{f.detail}</p>
+                        </div>
+                        {f.modifier !== 0 && (
+                          <span className="ml-auto shrink-0 text-xs font-medium tabular-nums" style={{ color: SEVERITY_COLORS[f.severity] }}>
+                            {f.modifier > 0 ? '+' : ''}{f.modifier}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  <p className="text-white/30 text-[11px] font-light leading-relaxed mt-6 pt-5 border-t border-white/10">
+                    Scored live against your real HTTP response using the Mozilla HTTP Observatory methodology, starting at 100 and applying each modifier above. Checks cover HTTPS enforcement, HSTS, Content Security Policy, clickjacking, cookie flags, CORS, Subresource Integrity, mixed content and version disclosure.
+                  </p>
+                </motion.div>
+              )}
+
               {/* Revenue risk */}
               <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
                 className="p-8 rounded-2xl border mb-6" style={{ borderColor: `${RISK_COLORS[result.revenueRisk.level]}40`, background: `${RISK_COLORS[result.revenueRisk.level]}0D` }}>
@@ -858,9 +1008,11 @@ export default function FreeAudit() {
               </motion.div>
 
               <p className="text-center text-white/30 text-xs font-light mt-8">
-                {result.measured
-                  ? 'Measured live with Google Lighthouse · Interpreted by '
-                  : 'Preliminary AI review · Full measured audit by '}
+                {!result.measured
+                  ? 'Preliminary AI review · Full measured audit by '
+                  : result.psiUnavailable
+                    ? 'Measured live against the Mozilla Observatory scale · Interpreted by '
+                    : 'Measured live with Google Lighthouse · Interpreted by '}
                 <Link to="/" className="text-[#00F0FF] hover:underline">Canvex Studio</Link>, New York
               </p>
             </motion.div>
