@@ -191,16 +191,22 @@ function renderRoute(template: string, route: Route): string {
   }
 
   // Crawlable content. Sits inside #root so React's createRoot().render()
-  // clears it on hydration; a human with JS never sees it, a crawler without
-  // JS gets the page's real text instead of the homepage boilerplate.
+  // clears it on hydration; a crawler without JS gets the page's real text
+  // instead of the homepage boilerplate. It's visually hidden inline (not
+  // display:none, so screen readers still announce it) because the gap
+  // between first paint and JS finishing hydration is real on a hard
+  // refresh — without this, sighted visitors briefly see this raw text
+  // flash before the styled hero/video takes over.
+  const srOnly =
+    'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0';
   const fallback = [
     `<h1>${esc(route.heading)}</h1>`,
     ...route.body.map((p) => `<p>${esc(p)}</p>`),
-  ].join('\n      ');
+  ].join('\n        ');
 
   html = html.replace(
     '<div id="root"></div>',
-    `<div id="root">\n      ${fallback}\n    </div>`
+    `<div id="root">\n      <div style="${srOnly}">\n        ${fallback}\n      </div>\n    </div>`
   );
 
   return html;
